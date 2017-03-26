@@ -1,5 +1,5 @@
 {
-  "name": "weBuild-api",
+  "name": "scaffold-api",
   "main": "server.js",
   "dependencies": {
     "express": "~4.0.0",

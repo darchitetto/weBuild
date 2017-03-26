@@ -19,10 +19,10 @@ mongoose.connect('mongodb://127.0.0.1/weBuild');
 // START THE SERVER
 // =============================================================================
 app.listen(port);
-console.log('weBuild is up!! ' + port);
+console.log('weBuild.services is up!! ' + port);
 
 
-//const url = 'mongodb://<darcitetto>:<n3bulous>@ds137220.mlab.com:37220/weBuild';
+//const url = 'mongodb://<darcitetto>:<n3bulous>@ds137220.mlab.com:37220/weBuild.services';
 // const url = 'mongodb://localhost:27017'
 // let db;
 //
