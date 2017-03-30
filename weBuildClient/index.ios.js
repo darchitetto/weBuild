@@ -1,52 +1,93 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
+//import builder from './middleware/builder';
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  ListView
 } from 'react-native';
 
+const REQUEST_URL = 'http://localhost:8080/api/builders';
+
 export default class weBuildClient extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to weBuild!!
-        </Text>
-        <Text style={styles.instructions}>
-          A kick ass app from:
-        </Text>
-        <Text style={styles.instructions}>
-          Terry and Ira and Denise
-        </Text>
-      </View>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            dataSource: new ListView.DataSource({
+                rowHasChanged: (row1, row2) => row1 !== row2,
+            }),
+            loaded: false,
+        };
+    }
+
+    componentDidMount() {
+        this.fetchData();
+    }
+
+    fetchData() {
+        fetch(REQUEST_URL)
+            .then((response) => response.json())
+            .then((responseData) => {
+                this.setState({
+                    dataSource: this.state.dataSource.cloneWithRows(responseData),
+                    loaded: true,
+                });
+            })
+            .done();
+    }
+
+    render() {
+        if (!this.state.loaded) {
+            return this.renderLoadingView();
+        }
+
+        return (
+            <ListView
+                dataSource={this.state.dataSource}
+                renderRow={this.renderBuilder}
+                style={styles.listView}
+            />
+        );
+    }
+
+    renderLoadingView() {
+        return (
+            <View style={styles.container}>
+                <Text>
+                    Loading builders...
+                </Text>
+            </View>
+        );
+    }
+
+    renderBuilder(builder) {
+        return (
+            <View style={styles.rightContainer}>
+                <Text style={styles.title}>{builder.name}</Text>
+                <Text style={styles.id}>{builder.builderId}</Text>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+    },
+    listView: {
+        paddingTop: 20,
+        backgroundColor: '#F5FCFF',
+    },
+    rightContainer: {
+        flex: 1,
+    },
+    id: {
+        textAlign: 'center',
+    },
 });
 
 AppRegistry.registerComponent('weBuildClient', () => weBuildClient);
