@@ -70,4 +70,4 @@ export default class builderInfo extends Component {
     }
 }
 
-AppRegistry.registerComponent('weBuildClient', () => builderInfo); //TODO: understand why we cannot rename component to bulderInfo
+AppRegistry.registerComponent('builderInfo', () => builderInfo);
