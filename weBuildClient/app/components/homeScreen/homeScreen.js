@@ -3,6 +3,7 @@ import {
     AppRegistry,
     Text,
     Button,
+    View
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import builderInfo from '../builderInfo/builderInfo'
@@ -16,12 +17,14 @@ class homeScreen extends React.Component {
         const { navigate } = this.props.navigation;
 
         return (
-            <Text>Hello, welcome to weBuild!</Text>,
-            <Button
-                onPress={() => navigate('BuilderInfo')}
-                title="View Available Builder List in weBuild"
-                color="#841584"
-            />
+            <View>
+                <Text>Hello, welcome to weBuild!</Text>
+                <Button
+                    onPress={() => navigate('BuilderInfo')}
+                    title="View Available Builder List in weBuild"
+                    color="#841584"
+                />
+            </View>
         );
     }
 }
