@@ -15,6 +15,9 @@ export default StyleSheet.create({
     rightContainer: {
         flex: 1,
     },
+    leftContainer: {
+        flex: 2,
+    },
     id: {
         textAlign: 'center',
     },

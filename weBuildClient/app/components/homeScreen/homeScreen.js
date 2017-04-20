@@ -6,7 +6,8 @@ import {
     View
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import builderInfo from '../builderInfo/builderInfo'
+import builderInfo from '../builderInfo/builderInfo';
+import schedule from '../schedule/schedule';
 
 class homeScreen extends React.Component {
 
@@ -20,7 +21,7 @@ class homeScreen extends React.Component {
             <View>
                 <Text>Hello, welcome to weBuild!</Text>
                 <Button
-                    onPress={() => navigate('BuilderInfo')}
+                    onPress={() => navigate('Schedule')}
                     title="View Available Builder List in weBuild"
                     color="#841584"
                 />
@@ -31,7 +32,9 @@ class homeScreen extends React.Component {
 
 const weBuildClient = StackNavigator({
     Home: { screen: homeScreen },
-    BuilderInfo: {screen: builderInfo}
+    BuilderInfo: {screen: builderInfo},
+    Schedule: {screen: schedule}
+
 });
 
 AppRegistry.registerComponent('weBuildClient', () => weBuildClient);
