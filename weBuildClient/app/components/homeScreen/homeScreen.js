@@ -8,6 +8,8 @@ import {
 import { StackNavigator } from 'react-navigation';
 import builderInfo from '../builderInfo/builderInfo';
 import schedule from '../schedule/schedule';
+import Footer from '../footer/footer';
+
 
 class homeScreen extends React.Component {
 
@@ -25,7 +27,9 @@ class homeScreen extends React.Component {
                     title="View my Tasks"
                     color="#841584"
                 />
+                <Footer navigator={this.props.navigation}/>
             </View>
+
         );
     }
 }
