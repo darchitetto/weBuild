@@ -12,7 +12,7 @@ import schedule from '../schedule/schedule';
 class homeScreen extends React.Component {
 
     static navigationOptions = {
-        title: 'Welcome to weBuild',
+        title: 'My Home',
     };
     render() {
         const { navigate } = this.props.navigation;
@@ -22,7 +22,7 @@ class homeScreen extends React.Component {
                 <Text>Hello, welcome to weBuild!</Text>
                 <Button
                     onPress={() => navigate('Schedule')}
-                    title="View Available Builder List in weBuild"
+                    title="View my Tasks"
                     color="#841584"
                 />
             </View>
