@@ -1,7 +1,8 @@
 import React from 'react';
+import homeScreen from './components/homeScreen/homeScreen';
 
 const map = {
-    'homeScreen' : require ('./components/homeScreen/homeScreen'),
+    'homeScreen' : homeScreen,
 }
 
 module.exports = map;
