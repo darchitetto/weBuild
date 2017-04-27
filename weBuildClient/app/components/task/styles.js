@@ -2,23 +2,57 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-    container: {
+    column: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'stretch',
+        backgroundColor: 'white',
+        height: 50,
     },
-    listView: {
-        paddingTop: 20,
-        backgroundColor: '#F5FCFF',
-    },
-    rightContainer: {
+    row: {
         flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'stretch',
+        backgroundColor: 'white',
     },
-    leftContainer: {
-        flex: 2,
+    task: {
+        flex:2,
+        borderWidth: .5,
+        borderRightWidth: 0,
+        borderBottomWidth: 0,
+        borderColor: 'gray',
     },
-    id: {
-        textAlign: 'center',
+    subTask: {
+        flex:.25,
+        borderTopWidth: .5,
+        borderColor: 'gray',
+
     },
+    settings: {
+        flex:.25,
+        borderTopWidth: .5,
+        borderRightWidth: .5,
+        borderColor: 'gray',
+    },
+    topRow:{
+        marginLeft: 5
+    },
+    middleRow:{
+        fontSize: 12,
+        marginLeft: 5
+
+    },
+    bottomRow:{
+        marginLeft: 5,
+        marginBottom: 5,
+        fontSize: 10,
+        alignSelf: 'stretch',
+
+    },
+    progress:{
+        alignSelf: 'flex-start',
+        marginRight: 5
+    }
 });

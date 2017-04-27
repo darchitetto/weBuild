@@ -2,20 +2,22 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
     listView: {
         paddingTop: 20,
-        backgroundColor: '#F5FCFF',
+        width: '100%',
+        height: 20
     },
-    rightContainer: {
+    community:{
+        textAlign: 'center'
+    },
+    column: {
         flex: 1,
-    },
-    id: {
-        textAlign: 'center',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'stretch',
+        backgroundColor: 'white',
+        borderWidth: .5,
+        borderColor: 'gray',
+        height: 50,
     },
 });

@@ -36,11 +36,14 @@ export default class schedule extends Component {
 
     render(){
         return(
-            <ListView
-                dataSource={this.state.dataSource}
-                renderRow={this.renderTask}
-                style={styles.listView}
-            />
+            <View style={styles.column}>
+                <Text style={styles.community}>Community 1 </Text>
+                <ListView
+                    dataSource={this.state.dataSource}
+                    renderRow={this.renderTask}
+                    style={styles.listView}
+                />
+            </View>
         );
     }
 
@@ -50,6 +53,7 @@ export default class schedule extends Component {
                   category={taskItem.category}
                   contractor={taskItem.contractor}
                   duration={taskItem.duration}
+                  durationType={taskItem.durationType}
                   startDate={taskItem.startDate}
             />
         );
