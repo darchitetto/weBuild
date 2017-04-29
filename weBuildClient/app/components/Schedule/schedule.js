@@ -12,8 +12,6 @@ import Task from '../task/task'
 export default class schedule extends Component {
 
     constructor (){
-        console.warn('here' )
-
         super();
         this.state = {
             dataSource: new ListView.DataSource({
