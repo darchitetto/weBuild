@@ -40,23 +40,23 @@ export default class task extends Component{
                 <View style={styles.row}>
                     <View style={[styles.column, styles.task]}>
                         <View style={styles.row}>
-                            <Text style={styles.topRow}>{this.props.category}</Text>
+                            <Text style={styles.topSubRow}>{this.props.category}</Text>
                         </View>
                         <View style={styles.row}>
-                            <Text style={styles.middleRow}>Contractor: {this.props.contractor}</Text>
+                            <Text style={styles.middleSubRow}>Contractor: {this.props.contractor}</Text>
                         </View>
                         <View style={styles.row}>
-                            <Text style={styles.bottomRow} >Start Date: {this.props.startDate}</Text>
-                            <Text style={styles.bottomRow} >Duration: {this.props.duration}  {this.props.durationType}</Text>
+                            <Text style={styles.bottomSubRow} >Start Date: {this.props.startDate}</Text>
+                            <Text style={styles.bottomSubRow} >Duration: {this.props.duration}  {this.props.durationType}</Text>
                             <Progress.Bar style={styles.progress} progress={.40} width={50} height={6} />
                         </View>
                     </View>
-                    <View style={[styles.column, styles.subTask]}>
+                    <View style={[styles.column, styles.subTaskButton]}>
                         <Button transparent onPress={this.toggleSubTask}>
                             <Text>v</Text>
                         </Button>
                     </View>
-                    <View style={[styles.column, styles.settings]}>
+                    <View style={[styles.column, styles.settingsButton]}>
                         <Button transparent>
                             <Text>:</Text>
                         </Button>
