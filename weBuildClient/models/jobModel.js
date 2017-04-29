@@ -1,5 +1,5 @@
-const tasks =
-{"tasks":
+const jobs =
+{"jobs":
     [
         {
             "name": "Plumbing - water stuff",
@@ -28,4 +28,4 @@ const tasks =
     ]
 };
 
-module.exports = tasks;
+module.exports = jobs;

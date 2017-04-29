@@ -17,7 +17,7 @@ export default StyleSheet.create({
         backgroundColor: 'white',
         height: 50,
     },
-    subTask: {
+    subJob: {
         flex:2,
         borderWidth: .5,
         borderRightWidth: 0,

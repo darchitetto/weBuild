@@ -17,7 +17,7 @@ export default StyleSheet.create({
         backgroundColor: 'white',
         height: 50,
     },
-    task: {
+    job: {
         flex:2,
         borderWidth: .5,
         borderRightWidth: 0,

@@ -1,4 +1,4 @@
-import tasksModel from '../../../models/tasksModel';
+import jobsModel from '../../../models/jobModel';
 import React, { Component } from 'react';
 import {
     AppRegistry,
@@ -7,7 +7,7 @@ import {
     View
 } from 'react-native';
 import styles from './styles'
-import Task from '../task/task'
+import Job from '../job/job'
 
 export default class schedule extends Component {
 
@@ -27,7 +27,7 @@ export default class schedule extends Component {
 
     fetchData(){
         this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(tasksModel.tasks),
+            dataSource: this.state.dataSource.cloneWithRows(jobsModel.jobs),
             loaded: true
         });
     }
@@ -35,24 +35,24 @@ export default class schedule extends Component {
     render(){
         return(
             <View style={styles.column}>
-                <Text style={styles.community}>Community 1 </Text>
+                <Text style={styles.community}>Schedule - Community 1 </Text>
                 <ListView
                     dataSource={this.state.dataSource}
-                    renderRow={this.renderTask}
+                    renderRow={this.renderJob}
                     style={styles.listView}
                 />
             </View>
         );
     }
 
-    renderTask(taskItem){
+    renderJob(jobItem){
         return (
-            <Task name={taskItem.name}
-                  category={taskItem.category}
-                  contractor={taskItem.contractor}
-                  duration={taskItem.duration}
-                  durationType={taskItem.durationType}
-                  startDate={taskItem.startDate}
+            <Job name={jobItem.name}
+                 category={jobItem.category}
+                 contractor={jobItem.contractor}
+                 duration={jobItem.duration}
+                 durationType={jobItem.durationType}
+                 startDate={jobItem.startDate}
             />
         );
     }

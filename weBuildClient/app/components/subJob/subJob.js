@@ -1,5 +1,5 @@
 import * as Progress from 'react-native-progress';
-import tasksModel from '../../../models/tasksModel';
+import jobsModel from '../../../models/jobModel';
 import React, { Component } from 'react';
 import { Container, Content, Button, Icon } from 'native-base';
 import {
@@ -9,9 +9,8 @@ import {
     ListView,
 } from 'react-native';
 import styles from './styles'
-import SubTask from '../subTask/subTask'
 
-export default class task extends Component{
+export default class subTask extends Component{
     constructor (){
         super();
         this.state = {
@@ -19,7 +18,6 @@ export default class task extends Component{
                 rowHasChanged: (row1, row2) => row1 !== row2, //todo why do we need this
             }),
             loaded: false,
-            showSubTask: false
         }
     }
 
@@ -29,16 +27,16 @@ export default class task extends Component{
 
     fetchData(){
         this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(tasksModel.tasks),
+            dataSource: this.state.dataSource.cloneWithRows(jobsModel.jobs),
             loaded: true
         });
     }
 
     render(){
         return (
-            <View>
+            <View style={styles.row}>
                 <View style={styles.row}>
-                    <View style={[styles.column, styles.task]}>
+                    <View style={[styles.column, styles.subJob]}>
                         <View style={styles.row}>
                             <Text style={styles.topSubRow}>{this.props.category}</Text>
                         </View>
@@ -51,59 +49,16 @@ export default class task extends Component{
                             <Progress.Bar style={styles.progress} progress={.40} width={50} height={6} />
                         </View>
                     </View>
-                    <View style={[styles.column, styles.subTaskButton]}>
-                        <Button transparent onPress={this.toggleSubTask}>
-                            <Text>v</Text>
-                        </Button>
-                    </View>
-                    <View style={[styles.column, styles.settingsButton]}>
+                    <View style={[styles.column, styles.settings]}>
                         <Button transparent>
                             <Text>:</Text>
                         </Button>
                     </View>
                 </View>
-                <View style={styles.row}>
-                    {this.showHideSubTask()}
-                </View>
             </View>
         );
     }
-
-    toggleSubTask = () =>{
-        this.setState({
-            showSubTask: !this.state.showSubTask
-        });
-    }
-
-    showHideSubTask = () => {
-        if (this.state.showSubTask) {
-            return (
-                <View style={styles.column}>
-                    <ListView
-                        dataSource={this.state.dataSource}
-                        renderRow={this.renderSubTask}
-                        style={styles.listView}
-                    />
-                </View>
-            );
-        }
-    }
-
-     renderSubTask = (taskItem) => {
-         return (
-             <SubTask name={taskItem.name}
-                   category={taskItem.category}
-                   contractor={taskItem.contractor}
-                   duration={taskItem.duration}
-                   durationType={taskItem.durationType}
-                   startDate={taskItem.startDate}
-             />
-         );
-    }
 }
 
-
-
-
-AppRegistry.registerComponent('task', () => task);
+AppRegistry.registerComponent('subJob', () => subJob);
 
