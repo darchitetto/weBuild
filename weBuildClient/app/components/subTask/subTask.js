@@ -9,9 +9,8 @@ import {
     ListView,
 } from 'react-native';
 import styles from './styles'
-import SubTask from '../subTask/subTask'
 
-export default class task extends Component{
+export default class subTask extends Component{
     constructor (){
         super();
         this.state = {
@@ -19,7 +18,6 @@ export default class task extends Component{
                 rowHasChanged: (row1, row2) => row1 !== row2, //todo why do we need this
             }),
             loaded: false,
-            showSubTask: false
         }
     }
 
@@ -36,7 +34,7 @@ export default class task extends Component{
 
     render(){
         return (
-            <View>
+            <View style={styles.row}>
                 <View style={styles.row}>
                     <View style={[styles.column, styles.task]}>
                         <View style={styles.row}>
@@ -62,48 +60,10 @@ export default class task extends Component{
                         </Button>
                     </View>
                 </View>
-                <View style={styles.row}>
-                    {this.showHideSubTask()}
-                </View>
             </View>
         );
     }
-
-    toggleSubTask = () =>{
-        this.setState({
-            showSubTask: !this.state.showSubTask
-        });
-    }
-
-    showHideSubTask = () => {
-        if (this.state.showSubTask) {
-            return (
-                <View style={styles.column}>
-                    <ListView
-                        dataSource={this.state.dataSource}
-                        renderRow={this.renderSubTask}
-                        style={styles.listView}
-                    />
-                </View>
-            );
-        }
-    }
-
-     renderSubTask = (taskItem) => {
-         return (
-             <SubTask name={taskItem.name}
-                   category={taskItem.category}
-                   contractor={taskItem.contractor}
-                   duration={taskItem.duration}
-                   durationType={taskItem.durationType}
-                   startDate={taskItem.startDate}
-             />
-         );
-    }
 }
 
-
-
-
-AppRegistry.registerComponent('task', () => task);
+AppRegistry.registerComponent('subTask', () => subTask);
 
