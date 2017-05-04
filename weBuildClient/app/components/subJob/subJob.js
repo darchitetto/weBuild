@@ -18,6 +18,7 @@ export default class subTask extends Component{
                 rowHasChanged: (row1, row2) => row1 !== row2, //todo why do we need this
             }),
             loaded: false,
+            showSubJob: false
         }
     }
 
@@ -50,13 +51,17 @@ export default class subTask extends Component{
                         </View>
                     </View>
                     <View style={[styles.column, styles.settings]}>
-                        <Button transparent>
-                            <Text>:</Text>
-                        </Button>
+                        <Button title=':' onPress={this.toggleSettings}/>
                     </View>
                 </View>
             </View>
         );
+    }
+
+    toggleSettings = () =>{
+        this.setState({
+            settings: !this.state.settings
+        });
     }
 }
 

@@ -3,21 +3,23 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
     listView: {
-        paddingTop: 20,
+        //paddingTop: 20,
         width: '100%',
-        height: 20
+        height: '100%'
     },
     community:{
-        textAlign: 'center'
+        textAlign: 'center',
+        backgroundColor: '#F6F6F9',
+
+
     },
-    column: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'stretch',
-        backgroundColor: 'white',
-        borderWidth: .5,
-        borderColor: 'gray',
-        height: 50,
-    },
+    tab: {
+        top: 56,
+        elevation: 8,
+        zIndex: 5,
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#DFE2E8',
+
+    }
 });

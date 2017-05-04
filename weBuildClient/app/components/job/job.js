@@ -52,14 +52,10 @@ export default class task extends Component{
                         </View>
                     </View>
                     <View style={[styles.column, styles.subTaskButton]}>
-                        <Button transparent onPress={this.toggleSubJob}>
-                            <Text>v</Text>
-                        </Button>
+                        <Button title='v' onPress={this.toggleSubJob}/>
                     </View>
                     <View style={[styles.column, styles.settingsButton]}>
-                        <Button transparent>
-                            <Text>:</Text>
-                        </Button>
+                        <Button title=':' onPress={this.toggleSubJob}/>
                     </View>
                 </View>
                 <View style={styles.row}>

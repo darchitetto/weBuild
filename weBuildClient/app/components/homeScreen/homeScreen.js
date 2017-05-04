@@ -2,43 +2,26 @@ import React from 'react';
 import {
     AppRegistry,
     Text,
-    Button,
     View
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-import builderInfo from '../builderInfo/builderInfo';
-import schedule from '../schedule/schedule';
-import Footer from '../footer/footer';
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import styles from './styles'
 
-
-class homeScreen extends React.Component {
-
+export default class homeScreen extends React.Component {
     static navigationOptions = {
-        title: 'My Home',
+        tabBarLabel: 'Home',
+        tabBarIcon: () => (<Icon size={24} color="white" name="home" />)
     };
-    render() {
-        const { navigate } = this.props.navigation;
 
+    render() {
         return (
-            <View>
-                <Text>Hello, welcome to weBuild!</Text>
-                <Button
-                    onPress={() => navigate('Schedule')}
-                    title="View my Tasks"
-                    color="#841584"
-                />
-                <Footer navigator={this.props.navigation}/>
+            <View style={styles.tab}>
+                <Text style={{textAlign: 'center'}}>Home Screen</Text>
             </View>
 
         );
     }
 }
 
-const weBuildClient = StackNavigator({
-    Home: { screen: homeScreen },
-    BuilderInfo: {screen: builderInfo},
-    Schedule: {screen: schedule}
+AppRegistry.registerComponent('homeScreen', () => homeScreen);
 
-});
-
-AppRegistry.registerComponent('weBuildClient', () => weBuildClient);

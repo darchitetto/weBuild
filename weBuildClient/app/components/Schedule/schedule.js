@@ -8,8 +8,13 @@ import {
 } from 'react-native';
 import styles from './styles'
 import Job from '../job/job'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export default class schedule extends Component {
+    static navigationOptions = {
+        tabBarLabel: 'Schedule',
+        tabBarIcon: () => (<Icon size={24} color="white" name="schedule" />)
+    };
 
     constructor (){
         super();
@@ -34,11 +39,12 @@ export default class schedule extends Component {
 
     render(){
         return(
-            <View style={styles.column}>
+            <View style={styles.tab}>
                 <Text style={styles.community}>Schedule - Community 1 </Text>
                 <ListView
                     dataSource={this.state.dataSource}
-                    renderRow={this.renderJob}
+                    renderRow={(rowData) => this.renderJob(rowData)}
+                    removeClippedSubviews={false}
                     style={styles.listView}
                 />
             </View>
