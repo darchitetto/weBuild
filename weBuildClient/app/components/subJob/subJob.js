@@ -1,12 +1,12 @@
 import * as Progress from 'react-native-progress';
 import jobsModel from '../../../models/jobModel';
 import React, { Component } from 'react';
-import { Container, Content, Button, Icon } from 'native-base';
 import {
     AppRegistry,
     View,
     Text,
     ListView,
+    Button
 } from 'react-native';
 import styles from './styles'
 
