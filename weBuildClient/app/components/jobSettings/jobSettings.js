@@ -1,3 +1,63 @@
-/**
- * Created by DArchitetto on 5/5/17.
- */
+import React from 'react';
+import {
+    AppRegistry,
+    Text,
+    View,
+    FlatList, Alert
+} from 'react-native';
+import styles from './styles'
+import { Button, Icon } from 'native-base';
+
+const onButtonPress = () => {
+    Alert.alert('Button has been pressed!');
+};
+
+export default class jobSettings extends React.Component {
+
+
+    render() {
+        return (
+            <View style={styles.buttonContainer}>
+                <View style={styles.button}>
+                    <Button iconLeft primary block onPress={onButtonPress}>
+                        <Icon name='add' />
+                        <Text>Add Job</Text>
+                    </Button>
+                </View>
+                <View style={styles.button}>
+                    <Button iconLeft primary block>
+                        <Icon name='trash' />
+                        <Text>Trash</Text>
+                    </Button>
+                </View>
+                <View style={styles.button}>
+                    <Button iconLeft primary block>
+                        <Icon name='git-merge' />
+                        <Text>Create a Job</Text>
+                    </Button>
+                </View>
+                <View style={styles.button}>
+                    <Button iconLeft primary block>
+                        <Icon name='git-network' />
+                        <Text>Create a Group</Text>
+                    </Button>
+                </View>
+                <View style={styles.button}>
+                    <Button iconLeft primary block>
+                        <Icon name='color-palette' />
+                        <Text>Job Color</Text>
+                    </Button>
+                </View>
+                <View style={styles.button}>
+                    <Button iconLeft primary block>
+                        <Icon name='checkmark' />
+                        <Text>Mark Complete</Text>
+                    </Button>
+                </View>
+            </View>
+
+        );
+    }
+}
+
+AppRegistry.registerComponent('jobSettings', () => jobSettings);
