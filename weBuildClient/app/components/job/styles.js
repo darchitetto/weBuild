@@ -55,5 +55,10 @@ export default StyleSheet.create({
     progress:{
         alignSelf: 'flex-start',
         marginRight: 5
+    },
+    button: {
+        paddingTop: 10,
+        paddingLeft: 10,
+        paddingRight: 10
     }
 });

@@ -6,12 +6,15 @@ import {
     View,
     Text,
     ListView,
-    Button
+    Button,
+    Modal,TouchableHighlight, Image
 } from 'react-native';
 import styles from './styles'
-import SubJob from '../subJob/subJob'
+import SubJob from '../subJob/subJob';
+import JobSettings from '../jobSettings/jobSettings';
 
-export default class task extends Component{
+
+export default class job extends Component{
     constructor (){
         super();
         this.state = {
@@ -19,7 +22,8 @@ export default class task extends Component{
                 rowHasChanged: (row1, row2) => row1 !== row2, //todo why do we need this
             }),
             loaded: false,
-            showSubJob: false
+            showSubJob: false,
+            modalVisible: false,
         }
     }
 
@@ -34,9 +38,26 @@ export default class task extends Component{
         });
     }
 
+    setModalVisible(visible) {
+        this.setState({modalVisible: visible});
+    }
+
     render(){
         return (
             <View>
+                <Modal
+                    animationType={"fade"}
+                    transparent={true}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => {alert("Modal has been closed.")}}>
+                    <View>
+                        <View>
+                            <JobSettings />
+                                <Button title='Close'  onPress={() => {this.setModalVisible(false)}}>
+                                </Button>
+                        </View>
+                    </View>
+                </Modal>
                 <View style={styles.row}>
                     <View style={[styles.column, styles.job]}>
                         <View style={styles.row}>
@@ -55,7 +76,9 @@ export default class task extends Component{
                         <Button title='v' onPress={this.toggleSubJob}/>
                     </View>
                     <View style={[styles.column, styles.settingsButton]}>
-                        <Button title=':' onPress={this.toggleSubJob}/>
+                        <Button title=':'  onPress={() => {this.setModalVisible(true)
+                        }}>
+                        </Button>
                     </View>
                 </View>
                 <View style={styles.row}>
@@ -77,29 +100,14 @@ export default class task extends Component{
                 <View style={styles.column}>
                     <ListView
                         dataSource={this.state.dataSource}
-                        renderRow={this.renderSubJob}
+                        renderRow={(subJob) => <SubJob data={subJob} />}
                         style={styles.listView}
                     />
                 </View>
             );
         }
     }
-
-     renderSubJob = (jobItem) => {
-         return (
-             <SubJob name={jobItem.name}
-                     category={jobItem.category}
-                     contractor={jobItem.contractor}
-                     duration={jobItem.duration}
-                     durationType={jobItem.durationType}
-                     startDate={jobItem.startDate}
-             />
-         );
-    }
 }
-
-
-
 
 AppRegistry.registerComponent('job', () => job);
 
