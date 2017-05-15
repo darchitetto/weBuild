@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavigationComponent } from 'react-native-material-bottom-navigation'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import { TabNavigator } from 'react-navigation'
+import { TabNavigator, StackNavigator } from 'react-navigation'
 import {
     AppRegistry,
     Text,
@@ -11,7 +11,7 @@ import {
 import homeScreen from './components/homeScreen/homeScreen';
 import schedule from './components/schedule/schedule';
 import styles from './styles';
-
+import AddJob from './components/addJob/addJob'
 
 class add extends React.Component {
     static navigationOptions = {
@@ -44,7 +44,7 @@ class myNotifications extends React.Component {
 }
 
 
-const MyApp = TabNavigator({
+const MainNavigation = TabNavigator({
     myDay: { screen: homeScreen },
     myProjects: { screen: schedule },
     add: { screen: add },
@@ -88,4 +88,21 @@ const MyApp = TabNavigator({
     }
 })
 
-AppRegistry.registerComponent('weBuildClient', () => MyApp);
+const JobActions = StackNavigator({
+    Add: { screen: AddJob },
+});
+
+
+export const Root = StackNavigator({
+    MainNavigation: {
+        screen: MainNavigation,
+    },
+    JobActions: {
+        screen: JobActions,
+    },
+}, {
+    mode: 'modal',
+    headerMode: 'none',
+});
+
+AppRegistry.registerComponent('weBuildClient', () => Root);

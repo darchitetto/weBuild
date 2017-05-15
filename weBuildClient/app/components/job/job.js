@@ -15,8 +15,8 @@ import JobSettings from '../jobSettings/jobSettings';
 
 
 export default class job extends Component{
-    constructor (){
-        super();
+    constructor (props){
+        super(props);
         this.state = {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2, //todo why do we need this
@@ -38,7 +38,7 @@ export default class job extends Component{
         });
     }
 
-    setModalVisible(visible) {
+    setModalVisible = (visible) => {
         this.setState({modalVisible: visible});
     }
 
@@ -48,13 +48,11 @@ export default class job extends Component{
                 <Modal
                     animationType={"fade"}
                     transparent={true}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => {alert("Modal has been closed.")}}>
+                    visible={this.state.modalVisible}>
                     <View>
                         <View>
-                            <JobSettings />
-                                <Button title='Close'  onPress={() => {this.setModalVisible(false)}}>
-                                </Button>
+                            <JobSettings {...this.props} setModalVisible={this.setModalVisible}/>
+                            <Button title='Close'  onPress={() => {this.setModalVisible(false)}}/>
                         </View>
                     </View>
                 </Modal>
@@ -108,6 +106,3 @@ export default class job extends Component{
         }
     }
 }
-
-AppRegistry.registerComponent('job', () => job);
-

@@ -11,13 +11,15 @@ import Job from '../job/job'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export default class schedule extends Component {
+
+
     static navigationOptions = {
         tabBarLabel: 'Schedule',
         tabBarIcon: () => (<Icon size={24} color="white" name="schedule" />)
     };
 
-    constructor (){
-        super();
+    constructor (props){
+        super(props);
         this.state = {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2, //todo why do we need this
@@ -53,7 +55,8 @@ export default class schedule extends Component {
 
     renderJob(jobItem){
         return (
-            <Job name={jobItem.name}
+            <Job {...this.props}
+                 name={jobItem.name}
                  category={jobItem.category}
                  contractor={jobItem.contractor}
                  duration={jobItem.duration}
