@@ -1,10 +1,8 @@
 import * as Progress from 'react-native-progress';
 import React, { Component } from 'react';
 import {
-    AppRegistry,
     View,
     Text,
-    ListView,
     Button
 } from 'react-native';
 import styles from './styles'
@@ -47,6 +45,4 @@ export default class subTask extends Component{
         });
     }
 }
-
-AppRegistry.registerComponent('subJob', () => subJob);
 

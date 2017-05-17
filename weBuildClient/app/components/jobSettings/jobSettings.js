@@ -5,11 +5,9 @@ import {
     View,
     FlatList,
     Alert,
-
 } from 'react-native';
 import styles from './styles'
 import { Button, Icon } from 'native-base';
-
 
 export default class jobSettings extends React.Component {
     constructor(props){

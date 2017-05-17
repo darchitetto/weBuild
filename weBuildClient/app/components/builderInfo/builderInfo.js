@@ -18,11 +18,11 @@ export default class builderInfo extends Component {
             }),
             loaded: false,
         };
-    }
+    };
 
     componentDidMount() {
         this.fetchData();
-    }
+    };
 
     fetchData() {
         fetch(REQUEST_URL)
@@ -34,7 +34,7 @@ export default class builderInfo extends Component {
                 });
             })
             .done();
-    }
+    };
 
     render() {
         if (!this.state.loaded) {

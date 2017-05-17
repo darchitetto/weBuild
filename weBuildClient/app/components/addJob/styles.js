@@ -8,5 +8,4 @@ export default StyleSheet.create({
         paddingRight: 10,
         width: 200
     }
-
 });

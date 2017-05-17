@@ -3,15 +3,12 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
     listView: {
-        //paddingTop: 20,
         width: '100%',
         height: '100%'
     },
     community:{
         textAlign: 'center',
         backgroundColor: '#F6F6F9',
-
-
     },
     tab: {
         top: 56,
@@ -20,6 +17,5 @@ export default StyleSheet.create({
         width: '100%',
         height: '100%',
         backgroundColor: '#DFE2E8',
-
     }
 });

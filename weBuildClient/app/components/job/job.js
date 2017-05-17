@@ -7,7 +7,9 @@ import {
     Text,
     ListView,
     Button,
-    Modal,TouchableHighlight, Image
+    Modal,
+    TouchableHighlight,
+    Image,
 } from 'react-native';
 import styles from './styles'
 import SubJob from '../subJob/subJob';

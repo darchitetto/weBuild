@@ -1,7 +1,6 @@
 import jobsModel from '../../../models/jobModel';
 import React, { Component } from 'react';
 import {
-    AppRegistry,
     Text,
     ListView,
     View
@@ -11,13 +10,6 @@ import Job from '../job/job'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export default class schedule extends Component {
-
-
-    static navigationOptions = {
-        tabBarLabel: 'Schedule',
-        tabBarIcon: () => (<Icon size={24} color="white" name="schedule" />)
-    };
-
     constructor (props){
         super(props);
         this.state = {
@@ -26,18 +18,23 @@ export default class schedule extends Component {
             }),
             loaded: false
         }
-    }
+    };
+
+    static navigationOptions = {
+        tabBarLabel: 'Schedule',
+        tabBarIcon: () => (<Icon size={24} color="white" name="schedule" />)
+    };
 
     componentDidMount(){
         this.fetchData();
-    }
+    };
 
     fetchData(){
         this.setState({
             dataSource: this.state.dataSource.cloneWithRows(jobsModel.jobs),
             loaded: true
         });
-    }
+    };
 
     render(){
         return(
@@ -51,7 +48,7 @@ export default class schedule extends Component {
                 />
             </View>
         );
-    }
+    };
 
     renderJob(jobItem){
         return (
@@ -64,7 +61,5 @@ export default class schedule extends Component {
                  startDate={jobItem.startDate}
             />
         );
-    }
-    
+    };
 }
-AppRegistry.registerComponent('schedule', () => schedule);
