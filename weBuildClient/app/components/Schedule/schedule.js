@@ -9,6 +9,8 @@ import styles from './styles'
 import Job from '../job/job'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
+const REQUEST_URL = 'http://localhost:8080/api/jobs';
+
 export default class schedule extends Component {
     constructor (props){
         super(props);
@@ -29,11 +31,16 @@ export default class schedule extends Component {
         this.fetchData();
     };
 
-    fetchData(){
-        this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(jobsModel.jobs),
-            loaded: true
-        });
+    fetchData() {
+        fetch(REQUEST_URL)
+            .then((response) => response.json())
+            .then((responseData) => {
+                this.setState({
+                    dataSource: this.state.dataSource.cloneWithRows(responseData),
+                    loaded: true,
+                });
+            })
+            .done();
     };
 
     render(){
