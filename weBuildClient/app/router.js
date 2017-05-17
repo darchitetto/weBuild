@@ -5,7 +5,6 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 import {
     AppRegistry,
     Text,
-    Button,
     View
 } from 'react-native';
 import homeScreen from './components/homeScreen/homeScreen';
@@ -42,7 +41,6 @@ class myNotifications extends React.Component {
         )
     }
 }
-
 
 const MainNavigation = TabNavigator({
     myDay: { screen: homeScreen },
@@ -92,8 +90,7 @@ const JobActions = StackNavigator({
     Add: { screen: AddJob },
 });
 
-
-export const Root = StackNavigator({
+export const Router = StackNavigator({
     MainNavigation: {
         screen: MainNavigation,
     },
@@ -105,4 +102,4 @@ export const Root = StackNavigator({
     headerMode: 'none',
 });
 
-AppRegistry.registerComponent('weBuildClient', () => Root);
+AppRegistry.registerComponent('weBuildClient', () => Router);
