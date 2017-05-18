@@ -1,4 +1,5 @@
 import * as Progress from 'react-native-progress';
+import moment from 'moment';
 import jobModel from '../../../models/jobModel';
 import React, { Component } from 'react';
 import {
@@ -44,6 +45,10 @@ export default class job extends Component{
         this.setState({modalVisible: visible});
     }
 
+    formatDate = (date) =>{
+        return moment(date).format('YYYY-DD-MM');
+    }
+
     render(){
         return (
             <View>
@@ -67,7 +72,7 @@ export default class job extends Component{
                             <Text style={styles.middleSubRow}>Contractor: {this.props.contractor}</Text>
                         </View>
                         <View style={styles.row}>
-                            <Text style={styles.bottomSubRow} >Start Date: {this.props.startDate}</Text>
+                            <Text style={styles.bottomSubRow} >Start Date: {this.formatDate(this.props.startDate)}</Text>
                             <Text style={styles.bottomSubRow} >Duration: {this.props.duration}  {this.props.durationType}</Text>
                             <Progress.Bar style={styles.progress} progress={.40} width={50} height={6} />
                         </View>
