@@ -40,6 +40,9 @@ export default class schedule extends Component {
                     loaded: true,
                 });
             })
+            .catch( (ex) => {
+
+            })
             .done();
     };
 

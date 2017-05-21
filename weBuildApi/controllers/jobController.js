@@ -9,6 +9,7 @@ module.exports = {
             }
             console.log('success');
             console.log(jobs);
+
             response.json(jobs);
         });
     },
