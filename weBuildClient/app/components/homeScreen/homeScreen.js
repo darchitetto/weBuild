@@ -1,23 +1,46 @@
-import React from 'react';
+import React, {Component} from 'react';
+import  {connect} from 'react-redux' //takes in state and actions and will wrap component
 import {
+    ScrollView,
+    View,
+    TextInput,
     Text,
-    View
-} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons'
-import styles from './styles'
+    Image,
+    TouchableHighlight,
+    StyleSheet,
+}
+    from 'react-native';
 
-export default class homeScreen extends React.Component {
-    static navigationOptions = {
-        tabBarLabel: 'Home',
-        tabBarIcon: () => (<Icon size={24} color="white" name="home" />)
-    };
 
-    render() {
-        return (
-            <View style={styles.tab}>
-                <Text style={{textAlign: 'center'}}>Home Screen</Text>
-            </View>
-        );
+class homeScreen extends Component{
+    searchPressed(){
+        this.props.fetchJobs()
     }
-};
+
+    render(){
+        return (
+            <View style={{marginTop:20}}>
+                <View>
+                    <TouchableHighlight onPress={ () => this.searchPressed() }>
+                        <Text>Fetch Jobs</Text>
+
+                    </TouchableHighlight>
+                    <Text>The job count is: {this.props.jobCount}
+                    </Text>
+                </View>
+                <ScrollView>
+
+                </ScrollView>
+            </View>)
+    }
+
+}
+
+function mapStateToProps (state){
+    return{
+        setSearchedJobs: state.setSearchedJobs,
+    }
+}
+
+export default connect(mapStateToProps)(homeScreen);
 
