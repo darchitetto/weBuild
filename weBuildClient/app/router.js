@@ -1,4 +1,5 @@
 import React from 'react'
+import  {connect} from 'react-redux' //takes in state and actions and will wrap component
 import { NavigationComponent } from 'react-native-material-bottom-navigation'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { TabNavigator, StackNavigator } from 'react-navigation'
@@ -93,6 +94,7 @@ const JobActions = StackNavigator({
 export const Router = StackNavigator({
     MainNavigation: {
         screen: MainNavigation,
+
     },
     JobActions: {
         screen: JobActions,
@@ -101,5 +103,3 @@ export const Router = StackNavigator({
     mode: 'modal',
     headerMode: 'none',
 });
-
-AppRegistry.registerComponent('weBuildClient', () => Router);
