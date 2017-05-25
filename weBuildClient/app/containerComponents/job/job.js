@@ -13,9 +13,8 @@ import {
     Image,
 } from 'react-native';
 import styles from './styles'
-import SubJob from '../subJob/subJob';
-import JobSettings from '../jobSettings/jobSettings';
-
+import SubJob from '../../components/subJob/subJob';
+import JobSettings from '../../components/jobSettings/jobSettings';
 
 export default class job extends Component{
     constructor (props){

@@ -8,7 +8,7 @@ import {
     View
 } from 'react-native';
 import styles from './styles'
-import Job from '../job/job'
+import Job from '../../containerComponents/job/job'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const REQUEST_URL = 'http://localhost:8080/api/jobs';

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import  {connect} from 'react-redux'
 import {ActionCreators} from '../../actions';
 import {bindActionCreators} from 'redux'
-
+import styles from './styles';
 import {
     ScrollView,
     View,
@@ -29,6 +29,7 @@ class homeScreen extends Component{
     render(){
         return (
             <View style={{marginTop:20}}>
+                <Text style={styles.text}>You Are Home!!</Text>
                 <View>
                     <TouchableHighlight onPress={ () => this.searchPressed() }>
                         <Text>Fetch Jobs</Text>

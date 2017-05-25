@@ -4,9 +4,8 @@ import { createStore, applyMiddleware, combineReducers, compose} from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger';
 import reducer from '../app/reducers';
-import AppContainer from '../app/containerComponents/appContainer'
+import AppContainer from './appContainer'
 import { AppRegistry } from 'react-native';
-import {Router} from './router'
 
 //Log when in dev only
 const loggerMiddleware = createLogger({predicate: (getState, action) => __DEV__});
@@ -23,8 +22,6 @@ function configureStore(initialState){
 }
 
 const store = configureStore({});
-
-
 
 const App = () => (
     <Provider store = {store}>

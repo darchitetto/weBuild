@@ -1,8 +1,6 @@
 import React from 'react'
-import  {connect} from 'react-redux' //takes in state and actions and will wrap component
-import {bindActionCreators} from 'redux'
 import { NavigationComponent } from 'react-native-material-bottom-navigation'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from '../node_modules/react-native-vector-icons/MaterialIcons'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import {
     AppRegistry,
@@ -13,7 +11,6 @@ import homeScreen from './components/homeScreen/homeScreen';
 import schedule from './components/schedule/schedule';
 import styles from './styles';
 import AddJob from './components/addJob/addJob'
-import {ActionCreators} from './actions'
 
 class add extends React.Component {
     static navigationOptions = {
