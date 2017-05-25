@@ -1,5 +1,6 @@
 import React from 'react'
 import  {connect} from 'react-redux' //takes in state and actions and will wrap component
+import {bindActionCreators} from 'redux'
 import { NavigationComponent } from 'react-native-material-bottom-navigation'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { TabNavigator, StackNavigator } from 'react-navigation'
@@ -12,6 +13,7 @@ import homeScreen from './components/homeScreen/homeScreen';
 import schedule from './components/schedule/schedule';
 import styles from './styles';
 import AddJob from './components/addJob/addJob'
+import {ActionCreators} from './actions'
 
 class add extends React.Component {
     static navigationOptions = {
@@ -91,7 +93,8 @@ const JobActions = StackNavigator({
     Add: { screen: AddJob },
 });
 
-export const Router = StackNavigator({
+
+const Router = StackNavigator({
     MainNavigation: {
         screen: MainNavigation,
 
@@ -103,3 +106,5 @@ export const Router = StackNavigator({
     mode: 'modal',
     headerMode: 'none',
 });
+
+export default Router;

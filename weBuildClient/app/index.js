@@ -20,15 +20,6 @@ function configureStore(initialState){
     );
 
     return createStore(reducer, initialState, enhancer);
-
-    // return createStore(
-    //     combineReducers({
-    //         Router: (state,action) => Router.router.getStateForAction(action,state),
-    //
-    //     }),
-    //     initialState, enhancer,
-    // )
-    
 }
 
 const store = configureStore({});

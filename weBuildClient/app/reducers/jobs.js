@@ -1,7 +1,7 @@
 import createReducer from '../lib/createReducer';
 import * as types from '../actions/types';
 
-export const searchJobs = createReducer({},{
+export const jobs = createReducer({},{
         [types.SET_SEARCHED_JOBS](state,action){
             let newState = {};
 
@@ -9,7 +9,7 @@ export const searchJobs = createReducer({},{
                 newState [job.jobNumber] = job
             });
 
-            return newState;
+            return action.jobs;
         }
     }
 );
@@ -19,3 +19,4 @@ export const jobCount = createReducer(0,{
         return action.jobs.length;
     }
 })
+

@@ -1,5 +1,7 @@
-import jobsModel from '../../../models/jobModel';
 import React, { Component } from 'react';
+import  {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {ActionCreators} from '../../actions';
 import {
     Text,
     ListView,
@@ -11,7 +13,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const REQUEST_URL = 'http://localhost:8080/api/jobs';
 
-export default class schedule extends Component {
+class schedule extends Component {
     constructor (props){
         super(props);
         this.state = {
@@ -63,13 +65,27 @@ export default class schedule extends Component {
     renderJob(jobItem){
         return (
             <Job {...this.props}
-                 name={jobItem.name}
-                 category={jobItem.category}
-                 contractor={jobItem.contractor}
-                 duration={jobItem.duration}
-                 durationType={jobItem.durationType}
-                 startDate={jobItem.startDate}
+                name={jobItem.name}
+                category={jobItem.category}
+                contractor={jobItem.contractor}
+                duration={jobItem.duration}
+                durationType={jobItem.durationType}
+                startDate={jobItem.startDate}
             />
         );
     };
 }
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators(ActionCreators, dispatch)
+}
+
+function mapStateToProps (state){
+    return{
+        setSearchedJobs: state.setSearchedJobs,
+        jobCount: state.jobCount,
+        jobs: state.jobs,
+    }
+}
+
+export default connect((mapStateToProps), mapDispatchToProps)(schedule);

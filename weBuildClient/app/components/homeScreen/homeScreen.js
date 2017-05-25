@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
-import  {connect} from 'react-redux' //takes in state and actions and will wrap component
+import  {connect} from 'react-redux'
+import {ActionCreators} from '../../actions';
+import {bindActionCreators} from 'redux'
+
 import {
     ScrollView,
     View,
@@ -8,14 +11,20 @@ import {
     Image,
     TouchableHighlight,
     StyleSheet,
+    FlatList
 }
     from 'react-native';
 
 
 class homeScreen extends Component{
     searchPressed(){
-        this.props.fetchJobs()
+        this.props.fetchJobs();
+        console.log('here:', this.props.searchJobs)
     }
+
+    componentDidMount(){
+       this.props.fetchJobs();
+    };
 
     render(){
         return (
@@ -28,19 +37,25 @@ class homeScreen extends Component{
                     <Text>The job count is: {this.props.jobCount}
                     </Text>
                 </View>
-                <ScrollView>
-
-                </ScrollView>
+                <FlatList
+                    data={[{key: 'a'}, {key: 'b'}]}
+                    renderItem={({item}) => <Text>{item.key}</Text>}
+                />
             </View>)
     }
+}
 
+function mapDispatchToProps(dispatch){
+    return bindActionCreators(ActionCreators, dispatch)
 }
 
 function mapStateToProps (state){
     return{
         setSearchedJobs: state.setSearchedJobs,
+        jobCount: state.jobCount,
+        searchJobs: state.searchJobs
     }
 }
 
-export default connect(mapStateToProps)(homeScreen);
+export default connect((mapStateToProps), mapDispatchToProps)(homeScreen);
 
