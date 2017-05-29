@@ -5,7 +5,8 @@ import {ActionCreators} from '../../actions';
 import {
     Text,
     ListView,
-    View
+    View,
+    FlatList
 } from 'react-native';
 import styles from './styles'
 import Job from '../../containerComponents/job/job'
@@ -16,6 +17,8 @@ const REQUEST_URL = 'http://localhost:8080/api/jobs';
 class schedule extends Component {
     constructor (props){
         super(props);
+        this.props.fetchJobs()
+
         this.state = {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2, //todo why do we need this
@@ -29,35 +32,25 @@ class schedule extends Component {
         tabBarIcon: () => (<Icon size={24} color="white" name="schedule" />)
     };
 
-    componentDidMount(){
-        this.fetchData();
-    };
-
-    fetchData() {
-        fetch(REQUEST_URL)
-            .then((response) => response.json())
-            .then((responseData) => {
-                this.setState({
-                    dataSource: this.state.dataSource.cloneWithRows(responseData),
-                    loaded: true,
-                });
-            })
-            .catch( (ex) => {
-
-            })
-            .done();
-    };
+    jobs(){
+        return Object.keys(this.props.jobs).map(key => this.props.jobs[key]);
+    }
 
     render(){
+        console.log('JOBS:', this.jobs())
+
         return(
             <View style={styles.tab}>
                 <Text style={styles.community}>Schedule - Community 1 </Text>
-                <ListView
-                    dataSource={this.state.dataSource}
-                    renderRow={(rowData) => this.renderJob(rowData)}
-                    removeClippedSubviews={false}
-                    style={styles.listView}
-                />
+                <Text>job Count is {this.props.jobCount}</Text>
+                <View style={styles.listView}>
+                    <FlatList
+                        key={this.props.jobCount}
+                        data={this.jobs()}
+                        renderItem={({item}) =>
+                            this.renderJob(item)}
+                    />
+                </View>
             </View>
         );
     };
