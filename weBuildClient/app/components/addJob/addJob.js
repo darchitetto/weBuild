@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import  {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {ActionCreators} from '../../actions/'
 import {
     AppRegistry,
     View,
@@ -15,9 +18,7 @@ import {Container,
         Button,
         Icon} from 'native-base';
 
-const Save_URL = 'http://localhost:8080/api/jobs';
-
-export default class addJob extends React.Component {
+class addJob extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -42,21 +43,7 @@ export default class addJob extends React.Component {
     };
 
     saveJob = () => {
-        fetch(Save_URL, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: this.state.name,
-                contractor: this.state.contractor,
-                duration: this.state.duration,
-                category: this.state.category,
-                startDate: this.state.startDate,
-                jobNumber: this.state.jobNumber,
-            })
-        });
+        this.props.addJob(this.state);
         this.props.navigation.navigate('myProjects');
     };
 
@@ -112,3 +99,17 @@ export default class addJob extends React.Component {
         );
     }
 }
+
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators(ActionCreators, dispatch)
+}
+
+function mapStateToProps (state){
+    return{
+        addJob: state.addJob,
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(addJob);

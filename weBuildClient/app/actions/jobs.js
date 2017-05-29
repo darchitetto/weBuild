@@ -1,8 +1,12 @@
 import * as types from './types'
 
-export function addJob() {
-    return{
-        type: types.ADD_JOB
+export function addJob (job){
+    saveJob(job);
+    setTimeout(() => fetchJobs(), 5000);
+
+    return {
+        type: types.JOB_ADDED,
+
     }
 }
 
@@ -25,3 +29,23 @@ export function fetchJobs (){
             .done();
     }
 }
+
+const saveJob = (job) => {
+    fetch('http://127.0.0.1:8080/api/jobs', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            name: job.name,
+            contractor: job.contractor,
+            duration: job.duration,
+            category: job.category,
+            startDate: job.startDate,
+            jobNumber: job.jobNumber,
+        })
+    }).then((responseData) => {
+      console.log('saveJobResponse', responseData)
+    });
+};
