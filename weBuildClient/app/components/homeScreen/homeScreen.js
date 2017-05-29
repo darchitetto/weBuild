@@ -43,17 +43,7 @@ class homeScreen extends Component{
                         I am app container
 
                         go to the server an get a count {this.props.jobCount}
-
-                        <View style={{width: 500, height: 500}}>
-                          <FlatList
-                                    data={this.jobs()}
-                                    renderItem={({item}) => <Text style={{width: 50, height: 50}}>{item.name}</Text>}
-                                />
-                        </View>
-
-
-
-
+                        
                     </Text>
 
                 </View>

@@ -12,8 +12,6 @@ import styles from './styles'
 import Job from '../../containerComponents/job/job'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-const REQUEST_URL = 'http://localhost:8080/api/jobs';
-
 class schedule extends Component {
     constructor (props){
         super(props);
