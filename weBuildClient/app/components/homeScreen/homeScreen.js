@@ -17,31 +17,47 @@ import {
 
 
 class homeScreen extends Component{
-    searchPressed(){
-        this.props.fetchJobs();
-        console.log('here:', this.props.searchJobs)
+    constructor(props){
+        super(props);
+        this.props.fetchJobs()
     }
 
-    componentDidMount(){
-       this.props.fetchJobs();
-    };
+    jobs(){
+        return Object.keys(this.props.jobs).map(key => this.props.jobs[key]);
+    }
 
     render(){
+        console.log('JOBS:', this.jobs())
         return (
             <View style={{marginTop:20}}>
                 <Text style={styles.text}>You Are Home!!</Text>
                 <View>
                     <TouchableHighlight onPress={ () => this.searchPressed() }>
-                        <Text>Fetch Jobs</Text>
+                        <Text>Fetch Jobs Here</Text>
 
                     </TouchableHighlight>
-                    <Text>The job count is: {this.props.jobCount}
+                    <Text>The job count is: {this.props.jobCount}</Text>
+
+
+                    <Text style={{marginTop:20}}>
+                        I am app container
+
+                        go to the server an get a count {this.props.jobCount}
+
+                        <View style={{width: 500, height: 500}}>
+                          <FlatList
+                                    data={this.jobs()}
+                                    renderItem={({item}) => <Text style={{width: 50, height: 50}}>{item.name}</Text>}
+                                />
+                        </View>
+
+
+
+
                     </Text>
+
                 </View>
-                <FlatList
-                    data={[{key: 'a'}, {key: 'b'}]}
-                    renderItem={({item}) => <Text>{item.key}</Text>}
-                />
+
             </View>)
     }
 }
@@ -54,9 +70,8 @@ function mapStateToProps (state){
     return{
         setSearchedJobs: state.setSearchedJobs,
         jobCount: state.jobCount,
-        searchJobs: state.searchJobs
+        jobs: state.jobs
     }
 }
 
 export default connect((mapStateToProps), mapDispatchToProps)(homeScreen);
-
