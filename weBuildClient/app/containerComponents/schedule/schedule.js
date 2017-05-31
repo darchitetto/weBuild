@@ -4,7 +4,6 @@ import {bindActionCreators} from 'redux'
 import {ActionCreators} from '../../actions';
 import {
     Text,
-    ListView,
     View,
     FlatList
 } from 'react-native';
@@ -16,13 +15,6 @@ class schedule extends Component {
     constructor (props){
         super(props);
         this.props.fetchJobs()
-
-        this.state = {
-            dataSource: new ListView.DataSource({
-                rowHasChanged: (row1, row2) => row1 !== row2, //todo why do we need this
-            }),
-            loaded: false
-        }
     };
 
     static navigationOptions = {
@@ -73,7 +65,6 @@ function mapDispatchToProps(dispatch){
 
 function mapStateToProps (state){
     return{
-        setSearchedJobs: state.setSearchedJobs,
         jobCount: state.jobCount,
         jobs: state.jobs,
     }
