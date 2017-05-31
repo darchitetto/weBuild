@@ -2,11 +2,14 @@ import * as Progress from 'react-native-progress';
 import moment from 'moment';
 import jobModel from '../../../models/jobModel';
 import React, { Component } from 'react';
+import  {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {ActionCreators} from '../../actions';
 import {
     AppRegistry,
     View,
     Text,
-    ListView,
+    FlatList,
     Button,
     Modal,
     TouchableHighlight,
@@ -16,28 +19,21 @@ import styles from './styles'
 import SubJob from '../../components/subJob/subJob';
 import JobSettings from '../../components/jobSettings/jobSettings';
 
-export default class job extends Component{
+class job extends Component{
     constructor (props){
         super(props);
+        this.props.fetchJobs()
+
         this.state = {
-            dataSource: new ListView.DataSource({
-                rowHasChanged: (row1, row2) => row1 !== row2, //todo why do we need this
-            }),
-            loaded: false,
             showSubJob: false,
             modalVisible: false,
         }
     }
 
-    componentDidMount(){
-        this.fetchData();
-    }
-
-    fetchData(){
-        this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(jobModel.jobs),
-            loaded: true
-        });
+    jobs(){
+        //Olny return a few until this is built out
+        let jobs = Object.keys(this.props.jobs).map(key => this.props.jobs[key]);
+        return jobs.splice(jobs.length - 3);
     }
 
     setModalVisible = (visible) => {
@@ -102,13 +98,25 @@ export default class job extends Component{
         if (this.state.showSubJob) {
             return (
                 <View style={styles.column}>
-                    <ListView
-                        dataSource={this.state.dataSource}
-                        renderRow={(subJob) => <SubJob data={subJob} />}
-                        style={styles.listView}
+                    <FlatList
+                        keyExtractor={(item,index) => item._id}
+                        data={this.jobs()}
+                        renderItem={({item}) => <SubJob data={item}/>}
                     />
                 </View>
             );
         }
     }
 }
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators(ActionCreators, dispatch)
+}
+
+function mapStateToProps (state){
+    return{
+        jobs: state.jobs,
+    }
+}
+
+export default connect((mapStateToProps), mapDispatchToProps)(job);
