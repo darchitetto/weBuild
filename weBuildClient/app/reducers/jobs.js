@@ -5,7 +5,7 @@ export const jobs = createReducer({},{
         [types.SET_SEARCHED_JOBS](state,action){
             let newState = {};
             action.jobs.forEach((job) => {
-                newState [job.jobNumber] = job
+                newState [job._id] = job
             });
 
             return newState;
