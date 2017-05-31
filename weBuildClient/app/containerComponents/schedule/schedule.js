@@ -9,8 +9,8 @@ import {
     FlatList
 } from 'react-native';
 import styles from './styles'
-import Job from '../../containerComponents/job/job'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Job from '../job/job'
+import Icon from '../../../node_modules/react-native-vector-icons/MaterialIcons'
 
 class schedule extends Component {
     constructor (props){
@@ -43,7 +43,7 @@ class schedule extends Component {
                 <Text>job Count is {this.props.jobCount}</Text>
                 <View style={styles.listView}>
                     <FlatList
-                        key={this.props.jobCount}
+                        keyExtractor={(item,index) => item._id}
                         data={this.jobs()}
                         renderItem={({item}) =>
                             this.renderJob(item)}
