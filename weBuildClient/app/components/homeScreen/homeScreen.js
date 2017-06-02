@@ -19,11 +19,10 @@ import {
 class homeScreen extends Component{
     constructor(props){
         super(props);
-        this.props.fetchJobs()
     }
 
     jobs(){
-        return Object.keys(this.props.jobs).map(key => this.props.jobs[key]);
+        // return Object.keys(this.props.jobs).map(key => this.props.jobs[key]);
     }
 
     render(){
@@ -58,9 +57,7 @@ function mapDispatchToProps(dispatch){
 
 function mapStateToProps (state){
     return{
-        setSearchedJobs: state.setSearchedJobs,
         jobCount: state.jobCount,
-        jobs: state.jobs
     }
 }
 
