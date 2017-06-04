@@ -8,7 +8,7 @@ const JobSchema   = new Schema(
         category: String,
         startDate: Date,
         jobNumber: Number,
-
+        createDate: Date
     },
     {   collection: 'jobs'});
 

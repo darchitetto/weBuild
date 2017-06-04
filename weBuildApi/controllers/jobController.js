@@ -11,7 +11,7 @@ module.exports = {
             console.log(jobs);
 
             response.json(jobs);
-        });
+        }).sort({createDate: 'desc'});
     },
     saveJobs : (request, response) => {
         var job = new Job();
@@ -22,6 +22,7 @@ module.exports = {
         job.category = request.body.category;
         job.startDate = request.body.startDate;
         job.jobNumber = request.body.jobNumber;
+        job.createDate = new Date();
         console.log('body', request.body);
 
         job.save(function(err) {
