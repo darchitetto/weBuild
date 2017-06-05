@@ -1,0 +1,32 @@
+import * as types from './types'
+
+export function addContact (contact){
+    console.log('ACTION addContact', contact)
+    saveContact(contact);
+
+    return {
+        type: types.CONTACT_ADDED,
+
+    }
+}
+
+const saveContact = (contact) => {
+    fetch('http://127.0.0.1:8080/api/contact', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            contactType: contact.contactType,
+            firstName: contact.firstName,
+            lastName: contact.lastName,
+            phone: contact.phone,
+            email: contact.email,
+            companyName: contact.companyName,
+            subContractorId: contact.subContractorId,
+        })
+    }).then((responseData) => {
+        console.log('saveContactResponse', responseData)
+    });
+};
