@@ -22,7 +22,6 @@ import JobSettings from '../../components/jobSettings/jobSettings';
 class job extends Component{
     constructor (props){
         super(props);
-        this.props.fetchJobs()
 
         this.state = {
             showSubJob: false,

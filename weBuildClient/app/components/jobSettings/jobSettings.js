@@ -1,10 +1,7 @@
 import React from 'react';
 import {
-    AppRegistry,
     Text,
     View,
-    FlatList,
-    Alert,
 } from 'react-native';
 import styles from './styles'
 import { Button, Icon } from 'native-base';
