@@ -11,21 +11,7 @@ import homeScreen from './components/homeScreen/homeScreen';
 import schedule from './containerComponents/schedule/schedule';
 import styles from './styles';
 import AddJob from './components/addJob/addJob'
-
-class add extends React.Component {
-    static navigationOptions = {
-        tabBarLabel: 'Add',
-        tabBarIcon: () => (<Icon size={24} color="white" name="note-add" />)
-    }
-
-    render() {
-        return (
-            <View style={styles.tab}>
-                <Text style={styles.text}>Lets add some shit</Text>
-            </View>
-        )
-    }
-}
+import AddEntity from './components/addEntity/addEntity'
 
 class myNotifications extends React.Component {
     static navigationOptions = {
@@ -45,7 +31,7 @@ class myNotifications extends React.Component {
 const MainNavigation = TabNavigator({
     myDay: { screen: homeScreen },
     myProjects: { screen: schedule },
-    add: { screen: add },
+    add: { screen: AddEntity },
     myNotifications: { screen: myNotifications },
 }, {
     tabBarComponent: NavigationComponent,
@@ -56,6 +42,7 @@ const MainNavigation = TabNavigator({
             rippleColor: 'white',
             style: { height: 56, elevation: 8, position: 'absolute', left: 0, bottom: 0, right: 0},
             shifting: false,
+
             tabs: {
                 myDay: {
                     barBackgroundColor: '#3E6FF3',
@@ -73,7 +60,7 @@ const MainNavigation = TabNavigator({
                     barBackgroundColor: '#3E6FF3',
                     labelColor: '#434343', // like in the standalone version, this will override the already specified `labelColor` for this tab
                     activeLabelColor: '#BECCF1',
-                    activeIcon: <Icon size={24} color="#212121" name="note-add" />
+                    activeIcon: <Icon size={24} color="#212121" name="note-add" />,
                 },
                 myNotifications: {
                     barBackgroundColor: '#3E6FF3',
