@@ -3,6 +3,11 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
     tab: {
+        flex: 2,
+        flexDirection: 'column',
+        alignItems: 'stretch',
+
+
         top: 56,
         elevation: 8,
         backgroundColor: '#F6F6F9',
@@ -33,5 +38,45 @@ export default StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         width: 200
-    }
+    },
+
+    row: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'stretch',
+        backgroundColor: 'white',
+    },
+    column: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+
+        alignItems: 'stretch',
+        backgroundColor: 'blue',
+        width: '100%',
+        height: '100%'
+    },
+    textPhoto: {
+        flex: .5,
+        width: 200,
+        height: 200,
+        color: '#2222DC',
+        backgroundColor: 'green',
+        fontSize: 15
+    },
+    capture: {
+        flex: .5,
+        width: 200,
+        height: 200,
+        backgroundColor: 'red',
+        borderRadius: 5,
+        padding: 10,
+        margin: 40
+    },
+    preview: {
+        width: '100%',
+        height: '100%'
+    },
+
 });

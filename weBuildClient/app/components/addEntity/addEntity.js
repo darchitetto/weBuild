@@ -14,6 +14,7 @@ import styles from './styles'
 import Icon from '../../../node_modules/react-native-vector-icons/MaterialIcons'
 import AddEntityModal from './addEntityModal';
 import * as entityTypes from './entityTypes';
+import Camera from 'react-native-camera';
 
 class addEntity extends React.Component {
     constructor(props){
@@ -62,6 +63,15 @@ class addEntity extends React.Component {
         this.setState({contactType:''});
     }
 
+    takePicture = () => {
+        console.log('PHOTOS!!')
+        const options = {};
+        //options.location = ...
+        this.camera.capture({metadata: options})
+            .then((data) => console.log('DATA',data))
+            .catch(err => console.error(err));
+    }
+
     renderEntity = () => {
         if (!this.state.modalVisible && this.state.isEntitySelected) {
             switch (this.state.entityToAdd) {
@@ -75,7 +85,6 @@ class addEntity extends React.Component {
                 case entityTypes.SUB_CONTRACTOR:
                     return <View>
                         <Text style={styles.header}>Add a {this.state.entityToAdd}</Text>
-                        {this.renderCommonFields()}
                         {this.renderSubContractorFields()}
                         <Button title='Save' onPress={() => {this.saveEntity()}}/>
                     </View>
@@ -87,6 +96,12 @@ class addEntity extends React.Component {
                         <Button title='Save' onPress={() => {this.saveEntity()}}/>
                     </View>
                     break;
+                case entityTypes.BUSINESS_ENTITY:
+                    return <View >
+                        <Text style={styles.header}>Add a {this.state.entityToAdd}</Text>
+                        {this.renderBusinessEntityFields()}
+                        <Button title='Save' onPress={() => {this.saveEntity()}}/>
+                    </View>
             }
         }
     }
@@ -108,7 +123,7 @@ class addEntity extends React.Component {
                         </View>
                     </View>
                 </Modal>
-                <Button title='Open Modal' onPress={() => {this.setModalVisible(true)}}/>
+                <Button style={styles.row} title='Open Modal' onPress={() => {this.setModalVisible(true)}}/>
                 {this.renderEntity()}
             </View>
         )
@@ -150,6 +165,7 @@ class addEntity extends React.Component {
     renderSubContractorFields = () => {
         return (
             <View>
+                {this.renderCommonFields()}
                 <View>
                     <Text style={styles.text}>Company</Text>
                     <TextInput
@@ -166,6 +182,26 @@ class addEntity extends React.Component {
                 </View>
             </View>
         )
+    }
+
+    renderBusinessEntityFields = () => {
+        return (
+            <View>
+                {this.renderCommonFields()}
+                <Text style={styles.text}>Company</Text>
+                <TextInput
+                    style={styles.textInput}
+                    onChangeText={(text) => this.setState({companyName:text})}
+                    placeholder='Name'/>
+                <Text style={styles.text}>Company Logo</Text>
+                <Camera
+                    ref={(cam) => {this.camera = cam;}}
+                    style={styles.preview}
+                    aspect={Camera.constants.Aspect.fill}>
+                    <Button title='Take a photo of your logo' onPress={this.takePicture.bind(this)}/>
+                </Camera>
+            </View>
+        );
     }
 }
 
