@@ -58,5 +58,15 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Thank you for using weBuild. Blah Blah Blah </string>
+
+	<!-- Include this only if you are planning to use the camera roll -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Thank you for using weBuild. Blah Blah Blah</string>
+
+	<!-- Include this only if you are planning to use the microphone for video recording -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Thank you for using weBuild. Blah Blah Blah</string>
 </dict>
 </plist>
