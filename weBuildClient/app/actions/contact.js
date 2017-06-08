@@ -11,7 +11,7 @@ export function addContact (contact){
 }
 
 const saveContact = (contact) => {
-    fetch('http://127.0.0.1:8080/api/contact', {
+    fetch(types.BASE_URL + 'contact', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

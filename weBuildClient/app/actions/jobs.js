@@ -19,7 +19,7 @@ export function setSearchedJobs ({jobs}){
 
 export function fetchJobs (){
     return (dispatch, getState) => {
-        fetch('http://localhost:8080/api/jobs')
+        fetch(types.BASE_URL + 'jobs')
             .then((response) => response.json())
             .then((responseData) => {
                 console.log(responseData);
@@ -31,7 +31,7 @@ export function fetchJobs (){
 }
 
 const saveJob = (job) => {
-    fetch('http://127.0.0.1:8080/api/jobs', {
+    fetch(types.BASE_URL + 'jobs', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
