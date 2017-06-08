@@ -14,13 +14,14 @@ import styles from './styles'
 import Icon from '../../../node_modules/react-native-vector-icons/MaterialIcons'
 import AddEntityModal from './addEntityModal';
 import * as entityTypes from './entityTypes';
-import Camera from 'react-native-camera';
+import Camera from '../camera/camera';
 
 class addEntity extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             modalVisible: false,
+            cameraModalVisible: false,
             isEntitySelected: false,
             entityToAdd: '',
             contactType: '',
@@ -42,6 +43,10 @@ class addEntity extends React.Component {
         this.setState ({modalVisible:visible})
     };
 
+    setCameraModalVisible = (visible) => {
+        this.setState ({cameraModalVisible:visible})
+    };
+
     setEntitySelectedState = (selectedEntity) =>{
         this.setState({entityToAdd:selectedEntity});
         this.setState({isEntitySelected:true});
@@ -61,15 +66,6 @@ class addEntity extends React.Component {
         this.setState({isEntitySelected:false});
         this.setState({entityToAdd:''});
         this.setState({contactType:''});
-    }
-
-    takePicture = () => {
-        console.log('PHOTOS!!')
-        const options = {};
-        //options.location = ...
-        this.camera.capture({metadata: options})
-            .then((data) => console.log('DATA',data))
-            .catch(err => console.error(err));
     }
 
     renderEntity = () => {
@@ -194,12 +190,22 @@ class addEntity extends React.Component {
                     onChangeText={(text) => this.setState({companyName:text})}
                     placeholder='Name'/>
                 <Text style={styles.text}>Company Logo</Text>
-                <Camera
-                    ref={(cam) => {this.camera = cam;}}
-                    style={styles.preview}
-                    aspect={Camera.constants.Aspect.fill}>
-                    <Button title='Take a photo of your logo' onPress={this.takePicture.bind(this)}/>
-                </Camera>
+                <Icon.Button size={25} color="white" name="camera-enhance" onPress={() => {this.setCameraModalVisible(true)}} >
+                    Logo
+                </Icon.Button>
+                <Modal
+                    animationType={"fade"}
+                    transparent={true}
+                    visible={this.state.cameraModalVisible}>
+                    <View>
+                        <View>
+                            <Camera {...this.props}
+                                captureButtonTitle='Take Photo'
+                                setCameraModalVisible={this.setCameraModalVisible} />
+                            <Button title='Close'  onPress={() => {this.setCameraModalVisible(false)}}/>
+                        </View>
+                    </View>
+                </Modal>
             </View>
         );
     }
