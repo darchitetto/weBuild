@@ -14,7 +14,7 @@ import Icon from '../../../node_modules/react-native-vector-icons/MaterialIcons'
 class schedule extends Component {
     constructor (props){
         super(props);
-        this.props.fetchJobs()
+        this.props.fetchJobs();
     };
 
     static navigationOptions = {
