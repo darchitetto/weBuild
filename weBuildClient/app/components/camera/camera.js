@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import styles from './styles'
 import Camera from 'react-native-camera';
+import reactNativeFetchBlob from 'react-native-fetch-blob';
 
 
 export default class WeBuildCamera extends React.Component{
@@ -15,10 +16,18 @@ export default class WeBuildCamera extends React.Component{
 
     takePicture () {
         console.log('PHOTOS!!')
-        const options = {};
+        const options = {target: Camera.constants.CaptureTarget.disk,};
         //options.location = ...
         this.camera.capture({metadata: options})
-            .then((data) => console.log('DATA',data))
+            .then((data) => {
+                console.log('DATA',data);
+                reactNativeFetchBlob.fs.readFile(data.path, 'base64')
+                    .then((base64data) => {
+                        let base64Image = `data:image/jpeg;base64,${base64data}`;
+                        this.saveImage(base64Image);
+                    })
+            })
+
             .catch(err => console.error(err));
     }
 
@@ -34,4 +43,23 @@ export default class WeBuildCamera extends React.Component{
             </View>
         )
     }
+
+
+    saveImage (base64Image) {
+        console.log('saving Image')
+        fetch('http://127.0.0.1:8080/api/fileStream', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                image: base64Image
+            })
+        }).then((responseData) => {
+            console.log('saveImage', responseData)
+        }).catch((err) => {
+            console.log('saveImage Error: ',err)
+        });
+    };
 }
