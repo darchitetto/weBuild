@@ -2,9 +2,10 @@
   "name": "scaffold-api",
   "main": "server.js",
   "dependencies": {
+    "body-parser": "~1.0.1",
     "express": "~4.0.0",
-    "mongoose": "~4.4.19",
-    "body-parser": "~1.0.1"
+    "gridfs-stream": "^1.1.1",
+    "mongoose": "~4.4.19"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",

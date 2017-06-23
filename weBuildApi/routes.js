@@ -2,7 +2,7 @@ import express from 'express';
 import builderController from './controllers/builderController';
 import jobController from './controllers/jobController';
 import contactController from './controllers/contactController';
-
+import fileStreamController from './controllers/fileStreamController';
 
 let router = express.Router();
 
@@ -16,6 +16,9 @@ router.route('/job').get(jobController.getJob);
 
 router.route('/contacts').get(contactController.getContacts);
 router.route('/contact').post(contactController.saveContact);
-router.route('/job').get(contactController.getContact);
+router.route('/contact').get(contactController.getContact);
+
+router.route('/fileStream').post(fileStreamController.writeStream);
+
 
 module.exports = router;
