@@ -5,8 +5,8 @@ import routes from './routes';
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 const port = process.env.PORT || 8080;        // set our port
 
@@ -20,7 +20,6 @@ mongoose.connect('mongodb://127.0.0.1/weBuild');
 // =============================================================================
 app.listen(port);
 console.log('weBuild.services is up!! ' + port);
-
 
 //const url = 'mongodb://<darcitetto>:<n3bulous>@ds137220.mlab.com:37220/weBuild.services';
 // const url = 'mongodb://localhost:27017'
