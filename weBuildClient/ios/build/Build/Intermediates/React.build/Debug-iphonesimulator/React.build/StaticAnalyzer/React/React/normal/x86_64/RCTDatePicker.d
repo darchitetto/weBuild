@@ -1,0 +1,8 @@
+dependencies: \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTDatePicker.m \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTDatePicker.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/UIView+React.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTComponent.h

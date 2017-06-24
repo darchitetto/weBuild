@@ -1,0 +1,32 @@
+dependencies: \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTScrollViewManager.m \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTScrollViewManager.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTConvert.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTAnimationType.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTBorderStyle.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTPointerEvents.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTViewManager.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/UIView+React.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTComponent.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTScrollView.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTAutoInsetsProtocol.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTScrollableProtocol.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTView.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Views/RCTShadowView.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Base/RCTRootView.h \
+  /Users/DArchitetto/Development/weBuild/weBuildClient/node_modules/react-native/React/Modules/RCTUIManager.h
