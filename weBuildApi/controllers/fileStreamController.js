@@ -1,9 +1,7 @@
-//save to gridFS
-//Return an id
-//store the id along with the type, name in a table that can be related to other objects (contact, builder)
 import express from 'express'
 import mongoose from 'mongoose'
 import grid from 'gridfs-stream';
+import FileStream from '../models/fileStreamModel.js';
 
 const app = express();
 const connection = mongoose.connection;
@@ -32,9 +30,8 @@ module.exports = {
         //When closing the stream, read it back out and send the ID in the response
         writestream.on('close', (file) => {
             console.log('ImageId: ', file._id);
-
-            //store in document table
-            //associate documentid to entity
+            const ret = saveFileStream(request, file._id)
+            return {fileId: file._id}
         });
 
         writestream.on('error', (Error) =>  {
@@ -42,6 +39,23 @@ module.exports = {
 
         });
     }
+}
+
+const saveFileStream = (request, fileId) => {
+    var fileStream = new FileStream();
+
+    fileStream.fsFileId = fileId;
+    fileStream.type = request.body.fileType;
+    fileStream.fileName = request.body.fileName;
+    fileStream.createDate = new Date();
+
+    fileStream.save(function(err, fileStream) {
+        if (err) {
+            return err;
+        }
+    });
+
+    return { message: 'File created!' };
 }
 
 //READ STREAM
