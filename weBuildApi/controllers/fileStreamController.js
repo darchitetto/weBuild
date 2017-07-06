@@ -14,7 +14,7 @@ connection.once('open', function () {
 
 
 module.exports = {
-    writeStream: (request,response) =>{
+    writeStream: async (request,response) => {
         console.log('write stream')
 
         const gridfs = app.get('gridfs');
@@ -29,9 +29,17 @@ module.exports = {
 
         //When closing the stream, read it back out and send the ID in the response
         writestream.on('close', (file) => {
-            console.log('ImageId: ', file._id);
-            const ret = saveFileStream(request, file._id)
-            return {fileId: file._id}
+            saveFileStream(request, file._id).then(fileStream => {
+                console.log('ImageId: ', file._id)
+                console.log('fileStream: ', fileStream)
+
+                response.json(
+                    {
+                        fileStreamId: fileStream.fileStreamId,
+                        fileId: file._id
+                    }
+                )
+            });
         });
 
         writestream.on('error', (Error) =>  {
@@ -41,21 +49,23 @@ module.exports = {
     }
 }
 
-const saveFileStream = (request, fileId) => {
-    var fileStream = new FileStream();
+ async function saveFileStream (request, fileId)  {
+    let fileStream = new FileStream();
 
     fileStream.fsFileId = fileId;
     fileStream.type = request.body.fileType;
     fileStream.fileName = request.body.fileName;
     fileStream.createDate = new Date();
 
-    fileStream.save(function(err, fileStream) {
-        if (err) {
-            return err;
-        }
-    });
-
-    return { message: 'File created!' };
+     try {
+        let res = await fileStream.save();
+        console.log('saveFileStream', res);
+        return {fileStreamId: res._id};
+     }
+     catch(err){
+        console.log('Error: saveFileStream', err);
+        return err;
+     }
 }
 
 //READ STREAM

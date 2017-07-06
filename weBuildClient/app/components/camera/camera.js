@@ -45,7 +45,6 @@ export default class WeBuildCamera extends React.Component{
         )
     }
 
-
     saveImage (base64Image, fileName) {
         console.log('saving Image')
         fetch('http://127.0.0.1:8080/api/fileStream', {
@@ -59,12 +58,15 @@ export default class WeBuildCamera extends React.Component{
                 fileType: fileStreamTypes.JPEG,
                 fileName: fileName,
             })
-        }).then((responseData) => {
-            //associate documentid to entity
-            console.log('saveImage')
-        }).catch((err) => {
+        })
+		.then((response) => response.json())
+        .then((responseData) => {
+            console.log('responseData',responseData)
+        })
+        .catch((err) => {
             console.log('saveImage Error: ',err)
-        });
+        })
+        .done();
         console.log('saveImage')
 
     };
