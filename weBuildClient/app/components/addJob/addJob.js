@@ -66,18 +66,8 @@ class addJob extends React.Component {
                             <Input onChangeText={(text) => this.setState({duration:text})} />
                         </Item>
                         <Item stackedLabel>
-                            <Label >Category</Label>
-                            <Picker
-                                supportedOrientations={['portrait','landscape']}
-                                iosHeader="Select one"
-                                mode="dropdown"
-                                selectedValue={this.state.category}
-                                onValueChange={this.onValueChange.bind(this)}>
-                                <Item label="Outside" value="outside" />
-                                <Item label="Inside" value="inside" />
-                                <Item label="Garage" value="garage" />
-                                <Item label="Landscape" value="landscape" />
-                            </Picker>
+                            <Label>Category</Label>
+                            <Input onChangeText={(text) => this.setState({category:text})} />
                         </Item>
                         <Item stackedLabel>
                             <Label>Start Date</Label>
