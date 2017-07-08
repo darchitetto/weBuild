@@ -8,7 +8,7 @@ import {
     View
 } from 'react-native';
 import homeScreen from './components/homeScreen/homeScreen';
-import schedule from './containerComponents/schedule/schedule';
+import schedule from './components/schedule/schedule';
 import styles from './styles';
 import AddJob from './components/addJob/addJob'
 import AddEntity from './components/addEntity/addEntity'
