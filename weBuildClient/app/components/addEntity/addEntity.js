@@ -201,11 +201,15 @@ class addEntity extends React.Component {
                         <View>
                             <Camera {...this.props}
                                 captureButtonTitle='Take Photo'
-                                setCameraModalVisible={this.setCameraModalVisible} />
+                                setCameraModalVisible={this.setCameraModalVisible}
+                            />
                             <Button title='Close'  onPress={() => {this.setCameraModalVisible(false)}}/>
                         </View>
                     </View>
                 </Modal>
+                <View>
+                    <Text>filestream: {this.props.imageFileStreamId}</Text>
+                </View>
             </View>
         );
     }
@@ -218,6 +222,7 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps (state){
     return{
         addContact: state.addContact,
+        imageFileStreamId: state.image.imageFileStreamId,
     }
 }
 
