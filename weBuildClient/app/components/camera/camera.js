@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import  {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {ActionCreators} from '../../actions';
 import {
     Text,
     View,
@@ -9,15 +12,13 @@ import Camera from 'react-native-camera';
 import reactNativeFetchBlob from 'react-native-fetch-blob';
 import * as fileStreamTypes from '../../lib/fileStreamTypes'
 
-
-export default class WeBuildCamera extends React.Component{
+class camera extends Component{
     constructor (props){
-        super(props)
+        super(props);
     }
 
     takePicture () {
-        console.log('PHOTOS!!')
-        const fileName = 'photo.jpg'; //better name!!
+        const fileName = 'photo.jpg'; //TODO Name Please!!
         const options = {target: Camera.constants.CaptureTarget.disk,};
         this.camera.capture({metadata: options})
             .then((data) => {
@@ -25,10 +26,9 @@ export default class WeBuildCamera extends React.Component{
                 reactNativeFetchBlob.fs.readFile(data.path, 'base64')
                     .then((base64data) => {
                         let base64Image = `data:image/jpeg;base64,${base64data}`;
-                        this.saveImage(base64Image, fileName);
+                        this.props.addImage(base64Image,fileName);
                     })
             })
-
             .catch(err => console.error(err));
     }
 
@@ -41,33 +41,20 @@ export default class WeBuildCamera extends React.Component{
                     aspect={Camera.constants.Aspect.fill}>
                     <Button title={this.props.captureButtonTitle} onPress={this.takePicture.bind(this)}/>
                 </Camera>
+
             </View>
         )
     }
-
-    saveImage (base64Image, fileName) {
-        console.log('saving Image')
-        fetch('http://127.0.0.1:8080/api/fileStream', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                image: base64Image,
-                fileType: fileStreamTypes.JPEG,
-                fileName: fileName,
-            })
-        })
-		.then((response) => response.json())
-        .then((responseData) => {
-            console.log('responseData',responseData)
-        })
-        .catch((err) => {
-            console.log('saveImage Error: ',err)
-        })
-        .done();
-        console.log('saveImage')
-
-    };
 }
+
+function mapDispatchToProps(dispatch){
+	return bindActionCreators(ActionCreators, dispatch)
+}
+
+function mapStateToProps (state){
+	return{
+		imageFileStreamId: state.image.imageFileStreamId,
+	}
+}
+
+export default connect((mapStateToProps), mapDispatchToProps)(camera);
