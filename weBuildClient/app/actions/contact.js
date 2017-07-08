@@ -6,7 +6,6 @@ export function addContact (contact){
 
     return {
         type: types.CONTACT_ADDED,
-
     }
 }
 
@@ -26,7 +25,8 @@ const saveContact = (contact) => {
             companyName: contact.companyName,
             subContractorId: contact.subContractorId,
         })
-    }).then((responseData) => {
+    }).then((response) => response.json())
+        .then((responseData) => {
         console.log('saveContactResponse', responseData)
     });
 };

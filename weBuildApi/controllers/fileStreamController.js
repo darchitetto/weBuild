@@ -49,7 +49,7 @@ module.exports = {
     }
 }
 
- async function saveFileStream (request, fileId)  {
+async function saveFileStream (request, fileId)  {
     let fileStream = new FileStream();
 
     fileStream.fsFileId = fileId;

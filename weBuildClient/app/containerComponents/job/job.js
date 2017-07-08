@@ -1,6 +1,5 @@
 import * as Progress from 'react-native-progress';
 import moment from 'moment';
-import jobModel from '../../../models/jobModel';
 import React, { Component } from 'react';
 import  {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'

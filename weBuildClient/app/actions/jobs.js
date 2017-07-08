@@ -6,7 +6,6 @@ export function addJob (job){
 
     return {
         type: types.JOB_ADDED,
-
     }
 }
 
