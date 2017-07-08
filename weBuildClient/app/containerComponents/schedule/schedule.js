@@ -59,14 +59,17 @@ class schedule extends Component {
     };
 }
 
+//Set up default props, in case there are no jobs in state
+schedule.defaultProps = {jobs: {}};
+
 function mapDispatchToProps(dispatch){
     return bindActionCreators(ActionCreators, dispatch)
 }
 
 function mapStateToProps (state){
     return{
-        jobCount: state.jobCount,
-        jobs: state.jobs,
+        jobCount: state.job.jobCount,
+        jobs: state.job.jobs,
     }
 }
 

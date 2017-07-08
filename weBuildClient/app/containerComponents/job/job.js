@@ -113,7 +113,7 @@ function mapDispatchToProps(dispatch){
 
 function mapStateToProps (state){
     return{
-        jobs: state.jobs,
+        jobs: state.job.jobs,
     }
 }
 

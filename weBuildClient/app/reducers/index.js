@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import * as jobsReducer from './jobs';
+import jobsReducer from './jobs';
+import imagesReducer from './images';
 
-export default combineReducers(Object.assign(
-    jobsReducer,
-))
+//TODO look into selectors to handle complex and deeply nested reducers, npm reselect as example
+export default combineReducers({job: jobsReducer, image:imagesReducer });
