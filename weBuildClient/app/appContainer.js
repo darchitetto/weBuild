@@ -4,7 +4,6 @@ import {ActionCreators} from './actions';
 import {bindActionCreators} from 'redux'
 import  {connect} from 'react-redux'
 
-
 class AppContainer extends Component {
     render(){
         return (
@@ -17,12 +16,4 @@ function mapDispatchToProps(dispatch){
     return bindActionCreators(ActionCreators, dispatch)
 }
 
-function mapStateToProps (state){
-    return{
-        setSearchedJobs: state.setSearchedJobs,
-        jobCount: state.jobCount,
-        jobs: state.jobs
-    }
-}
-
-export default connect((mapStateToProps), mapDispatchToProps)(AppContainer);
+export default connect(mapDispatchToProps)(AppContainer);
