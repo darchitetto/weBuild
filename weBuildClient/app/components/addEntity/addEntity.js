@@ -8,7 +8,8 @@ import {
     ListView,
     Modal,
     TextInput,
-    Button
+    Button,
+    Image
 } from 'react-native';
 import styles from './styles'
 import Icon from '../../../node_modules/react-native-vector-icons/MaterialIcons'
@@ -208,10 +209,21 @@ class addEntity extends React.Component {
                     </View>
                 </Modal>
                 <View>
-                    <Text>filestream: {this.props.imageFileStreamId}</Text>
+                    {this.renderImage()}
                 </View>
             </View>
         );
+    }
+
+    renderImage = () => {
+        if (this.props.imageFileStreamId){
+            return(
+                <Image
+                    style={styles.logo}
+                    source={{uri: 'http://127.0.0.1:8080/api/fileStream?fileStreamId=' + this.props.imageFileStreamId}}
+                />
+            )
+        }
     }
 }
 

@@ -57,26 +57,8 @@ export default StyleSheet.create({
         width: '100%',
         height: '100%'
     },
-    textPhoto: {
-        flex: .5,
-        width: 200,
-        height: 200,
-        color: '#2222DC',
-        backgroundColor: 'green',
-        fontSize: 15
-    },
-    capture: {
-        flex: .5,
-        width: 200,
-        height: 200,
-        backgroundColor: 'red',
-        borderRadius: 5,
-        padding: 10,
-        margin: 40
-    },
-    preview: {
+    logo:{
         width: '100%',
-        height: '100%'
-    },
-
+        height: 150
+    }
 });
