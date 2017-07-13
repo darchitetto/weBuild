@@ -30,6 +30,7 @@ class camera extends Component{
                     })
             })
             .catch(err => console.error(err));
+        this.props.setCameraModalVisible(false);
     }
 
     render () {
