@@ -19,6 +19,7 @@ router.route('/contact').post(contactController.saveContact);
 router.route('/contact').get(contactController.getContact);
 
 router.route('/fileStream').post(fileStreamController.writeStream);
+router.route('/fileStream').get(fileStreamController.getStream);
 
 
 module.exports = router;

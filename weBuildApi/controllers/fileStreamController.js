@@ -12,8 +12,30 @@ connection.once('open', function () {
     app.set('gridfs', gfs);
 });
 
-
 module.exports = {
+    getStream : (request, response) =>{
+        FileStream.findOne({_id: request.query.fileStreamId})
+            .exec(function(err, file) {
+                console.log('filetreamId', request.query.fileStreamId)
+                console.log('fsFileId',file.fsFileId);
+
+                const gridfs = app.get('gridfs');
+
+                response.set('Content-Type', file.contentType);
+                response.set('Content-Disposition', 'inline; filename="' + 'photo.jpeg' + '"');
+
+                var readstream = gridfs.createReadStream({
+                    _id: file.fsFileId
+                });
+
+                readstream.on("error", function(err) {
+                    console.log("Got error while processing stream " + err.message);
+                    response.end();
+                });
+
+                readstream.pipe(response);
+            });
+    },
     writeStream: async (request,response) => {
         console.log('write stream')
 
@@ -67,19 +89,3 @@ async function saveFileStream (request, fileId)  {
         return err;
      }
 }
-
-//READ STREAM
-
-// let buffer = 0;
-//
-// // read file, buffering data as we go
-// let readStream = gridfs.createReadStream({ filename: "photo.jpg" });
-//
-// readStream.on("data", function (chunk) {
-//     buffer += chunk;
-// });
-//
-// // dump contents to console when complete
-// readStream.on("end", function () {
-//     console.log("contents of file:\n\n", buffer);
-// });
