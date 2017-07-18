@@ -10,7 +10,7 @@ export function addContact (contact){
 }
 
 const saveContact = (contact) => {
-    fetch(types.BASE_URL + 'contact', {
+	fetch(types.BASE_URL + 'contact', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -24,6 +24,7 @@ const saveContact = (contact) => {
             email: contact.email,
             companyName: contact.companyName,
             subContractorId: contact.subContractorId,
+			imageFileStreamId: contact.imageFileStreamId
         })
     }).then((response) => response.json())
         .then((responseData) => {

@@ -10,6 +10,7 @@ const ContactSchema   = new Schema(
         email: String,
         companyName: String,
         subContractorId: String,
+        logoId: Schema.Types.ObjectId,
         createDate: Date
     },
     {   collection: 'contacts'});

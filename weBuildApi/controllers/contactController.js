@@ -23,6 +23,7 @@ module.exports = {
         contact.email = request.body.email;
         contact.companyName = request.body.companyName;
         contact.subContractorId = request.body.subContractorId;
+		contact.logoId = request.body.imageFileStreamId;
         contact.createDate = new Date();
 
         console.log('body', request.body);

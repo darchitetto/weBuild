@@ -16,6 +16,7 @@ import Icon from '../../../node_modules/react-native-vector-icons/MaterialIcons'
 import AddEntityModal from './addEntityModal';
 import * as entityTypes from './entityTypes';
 import Camera from '../camera/camera';
+import * as Progress from 'react-native-progress';
 
 class addEntity extends React.Component {
     constructor(props){
@@ -32,6 +33,7 @@ class addEntity extends React.Component {
             email: '',
             companyName: '',
             subContractorId: '',
+			imageFileStreamId: '',
         }
     }
 
@@ -45,29 +47,50 @@ class addEntity extends React.Component {
     };
 
     setCameraModalVisible = (visible) => {
-        this.setState ({cameraModalVisible:visible})
+        this.setState ({cameraModalVisible:visible});
     };
+
+	setLogoId = (logoId) => {
+	    console.log('IN SET LOGO ID')
+		this.setState({logoId:logoId});
+		this.setState ({cameraModalVisible:visible});
+	};
+
+	renderProgress = () => {
+		if (this.props.isImageSaveStarted) {
+			return ( <Progress.Circle size={50} indeterminate={true}/>)
+		};
+	};
 
     setEntitySelectedState = (selectedEntity) =>{
         this.setState({entityToAdd:selectedEntity});
         this.setState({isEntitySelected:true});
-    };
+	};
 
     setContactTypeState = (contactType) =>{
         this.setState({contactType:contactType});
-    };
+
+	};
 
     saveEntity = () => {
-        this.props.addContact(this.state);
+        this.props.addContact(this.state, this.props.imageFileStreamId);
         this.props.navigation.navigate('myProjects');
         this.resetScreen();
-    }
+    };
+
+	saveEntityWithLogo = () => {
+		this.setState({ imageFileStreamId: this.props.imageFileStreamId}, () => {
+			this.props.addContact(this.state, this.props.imageFileStreamId);
+		});
+		this.props.navigation.navigate('myProjects');
+		this.resetScreen();
+	};
 
     resetScreen = () => {
         this.setState({isEntitySelected:false});
         this.setState({entityToAdd:''});
         this.setState({contactType:''});
-    }
+    };
 
     renderEntity = () => {
         if (!this.state.modalVisible && this.state.isEntitySelected) {
@@ -95,9 +118,12 @@ class addEntity extends React.Component {
                     break;
                 case entityTypes.BUSINESS_ENTITY:
                     return <View >
+                        {this.renderProgress()}
                         <Text style={styles.header}>Add a {this.state.entityToAdd}</Text>
                         {this.renderBusinessEntityFields()}
-                        <Button title='Save' onPress={() => {this.saveEntity()}}/>
+                        <View>
+                            <Button title='Save' disabled={this.props.isImageSaveStarted} onPress={() => {this.saveEntityWithLogo()}}/>
+                        </View>
                     </View>
             }
         }
@@ -217,7 +243,7 @@ class addEntity extends React.Component {
 
     renderImage = () => {
         if (this.props.imageFileStreamId){
-            return(
+			return(
                 <Image
                     style={styles.logo}
                     source={{uri: 'http://127.0.0.1:8080/api/fileStream?fileStreamId=' + this.props.imageFileStreamId}}
@@ -232,6 +258,7 @@ function mapDispatchToProps(dispatch){
 }
 
 addEntity.defaultProps = {
+    imageFileStreamId: '',
     isImageSaveStarted: false,
 	isImageSavedSuccess: false,
 	isImageSavedError: null};
@@ -240,9 +267,9 @@ function mapStateToProps (state){
     return{
         addContact: state.addContact,
         imageFileStreamId: state.image.imageFileStreamId,
-		isImageSaveStarted: state.isImageSaveStarted,
-		isImageSavedSuccess: state.isImageSavedSuccess,
-		isImageSavedError: state.isImageSavedError,
+		isImageSaveStarted: state.image.isImageSaveStarted,
+		isImageSavedSuccess: state.image.isImageSavedSuccess,
+		isImageSavedError: state.image.isImageSavedError,
     }
 }
 

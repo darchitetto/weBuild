@@ -28,7 +28,7 @@ class camera extends Component{
                     .then((base64data) => {
                         let base64Image = `data:image/jpeg;base64,${base64data}`;
                         this.props.addImage(base64Image,fileName);
-                    })
+					})
             })
             .catch(err => console.error(err));
         this.props.setCameraModalVisible(false);
@@ -43,7 +43,6 @@ class camera extends Component{
                     aspect={Camera.constants.Aspect.fill}>
                     <Button title={this.props.captureButtonTitle} onPress={this.takePicture.bind(this)}/>
                 </Camera>
-
             </View>
         )
     }
