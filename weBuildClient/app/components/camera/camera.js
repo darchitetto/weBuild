@@ -18,6 +18,7 @@ class camera extends Component{
     }
 
     takePicture () {
+        this.props.imageSaveStarted();
         const fileName = 'photo.jpg'; //TODO Name Please!!
         const options = {target: Camera.constants.CaptureTarget.disk,};
         this.camera.capture({metadata: options})

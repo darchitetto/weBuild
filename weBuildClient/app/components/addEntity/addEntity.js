@@ -231,10 +231,18 @@ function mapDispatchToProps(dispatch){
     return bindActionCreators(ActionCreators, dispatch)
 }
 
+addEntity.defaultProps = {
+    isImageSaveStarted: false,
+	isImageSavedSuccess: false,
+	isImageSavedError: null};
+
 function mapStateToProps (state){
     return{
         addContact: state.addContact,
         imageFileStreamId: state.image.imageFileStreamId,
+		isImageSaveStarted: state.isImageSaveStarted,
+		isImageSavedSuccess: state.isImageSavedSuccess,
+		isImageSavedError: state.isImageSavedError,
     }
 }
 
