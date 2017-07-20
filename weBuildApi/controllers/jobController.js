@@ -14,7 +14,7 @@ module.exports = {
         }).sort({createDate: 'desc'});
     },
     saveJobs : (request, response) => {
-        var job = new Job();
+        let job = new Job();
 
         job.name = request.body.name;
         job.contractor = request.body.contractor;

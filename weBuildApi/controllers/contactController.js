@@ -14,7 +14,7 @@ module.exports = {
         }).sort({createDate: 'desc'});
     },
     saveContact : (request, response) => {
-        var contact = new Contact();
+        let contact = new Contact();
 
         contact.contactType = request.body.contactType;
         contact.firstName = request.body.firstName;
