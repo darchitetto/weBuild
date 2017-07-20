@@ -3,6 +3,7 @@ import builderController from './controllers/builderController';
 import jobController from './controllers/jobController';
 import contactController from './controllers/contactController';
 import fileStreamController from './controllers/fileStreamController';
+import communityController from './controllers/communityController';
 
 let router = express.Router();
 
@@ -21,5 +22,8 @@ router.route('/contact').get(contactController.getContact);
 router.route('/fileStream').post(fileStreamController.writeStream);
 router.route('/fileStream').get(fileStreamController.getStream);
 
+router.route('/communities').get(communityController.getCommunities);
+router.route('/community').post(communityController.saveCommunity);
+router.route('/community').get(communityController.getCommunity);
 
 module.exports = router;
