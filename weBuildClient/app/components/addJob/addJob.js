@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {ActionCreators} from '../../actions/'
+import Schedule from '../schedule/schedule'
 import {
     AppRegistry,
     View,
@@ -32,11 +33,12 @@ class addJob extends React.Component {
         }
     };
 
-    static navigationOptions = {
-        title: 'Add a Job',
-    };
+    //TODO: How to make the < button work
+    // static navigationOptions = {
+    //     title: 'Add a Job',
+    // };
 
-    onValueChange (value: string) {
+    onValueChange (value) {
         this.setState({
             category : value
         });
@@ -52,6 +54,11 @@ class addJob extends React.Component {
             <Container>
                 <Content>
                     <Form>
+                        <Button
+                            onPress={() => this.props.navigation.navigate('myProjects')}
+                            title="Go back from this HomeScreen">
+                            <Text>Back</Text>
+                        </Button>
                         <Item stackedLabel>
                             <Label >Name</Label>
                             <Input onChangeText={(text) => this.setState({name:text})} />

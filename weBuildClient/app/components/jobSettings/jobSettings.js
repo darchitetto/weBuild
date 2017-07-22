@@ -20,7 +20,7 @@ export default class jobSettings extends React.Component {
             <View style={styles.buttonContainer}>
                 <View style={styles.button}>
                     <Button iconLeft primary block onPress={() => {
-                            this.props.navigation.navigate('Add');
+                            this.props.navigation.navigate('AddJob');
                             this.props.setModalVisible(false);}}>
                         <Icon name='add' />
                         <Text>Add Job</Text>
