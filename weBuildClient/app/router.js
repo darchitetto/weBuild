@@ -8,10 +8,12 @@ import {
     View
 } from 'react-native';
 import homeScreen from './components/homeScreen/homeScreen';
+import communitities from './components/community/communities';
 import schedule from './components/schedule/schedule';
 import styles from './styles';
-import AddJob from './components/addJob/addJob'
-import AddEntity from './components/addEntity/addEntity'
+import AddJob from './components/addJob/addJob';
+import AddCommunity from './components/community/addCommunity';
+import AddEntity from './components/addEntity/addEntity';
 
 class myNotifications extends React.Component {
     static navigationOptions = {
@@ -29,7 +31,7 @@ class myNotifications extends React.Component {
 }
 
 const MainNavigation = TabNavigator({
-    myDay: { screen: homeScreen },
+	communities: { screen: communitities },
     myProjects: { screen: schedule },
     add: { screen: AddEntity },
     myNotifications: { screen: myNotifications },
@@ -44,7 +46,7 @@ const MainNavigation = TabNavigator({
             shifting: false,
 
             tabs: {
-                myDay: {
+                communities: {
                     barBackgroundColor: '#3E6FF3',
                     labelColor: '#434343', // like in the standalone version, this will override the already specified `labelColor` for this tab
                     activeLabelColor: '#BECCF1',
@@ -74,7 +76,11 @@ const MainNavigation = TabNavigator({
 })
 
 const JobActions = StackNavigator({
-    Add: { screen: AddJob },
+    AddJob: { screen: AddJob },
+});
+
+const CommunityActions = StackNavigator({
+	AddCommunity: { screen: AddCommunity },
 });
 
 
@@ -86,6 +92,9 @@ const Router = StackNavigator({
     JobActions: {
         screen: JobActions,
     },
+	CommunityActions: {
+		screen: CommunityActions,
+	},
 }, {
     mode: 'modal',
     headerMode: 'none',
