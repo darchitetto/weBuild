@@ -4,30 +4,37 @@
 
 * Any time you see a line starting with $ it denotes running the following command in a terminal.
 
-If you aren't using Homebrew package manager for OSX... well, you really should be unless you enjoy hand editing your bash profile all of the time. If you already use Homebrew then run the following  
+#### Homebrew
+* If you aren't using Homebrew package manager for OSX... well, you really should be unless you enjoy hand editing your bash profile all of the time. If you already use Homebrew then run the following  
 * $ brew update  
 
-If you don't use Homebrew already then run the following  
+* If you don't use Homebrew already then run the following  
 * $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+#### Node.js
 * Install node.js
 * $ brew install node
 
+#### Mongodb
 * Install mongodb
 * $ brew install mongodb
 
+#### React Native
 * Install react-native specific components
 * brew install watchman
 * npm install -g react-native-cli
 
+#### Xcode
 * Install XCode for iOS development
 * You will need to register for an Apple developer account in order to download this
 * https://itunes.apple.com/us/app/xcode/id497799835?mt=12
 * Also install the command line tools for XCode
 
+#### Android Studio
 * Install Android Studio to run on Android
 * https://developer.android.com/studio/install.html
 
+#### Mongodb Setup
 * Get Mongodb ready to run
 * $ git clone https://github.com/n3bu1ous/weBuild
 * $ cd weBuild
@@ -35,6 +42,7 @@ If you don't use Homebrew already then run the following
 * $ mkdir -p /data/db
 * $ mongod
 
+#### NPM Packages
 * Get the appropriate npm packages downloaded
 * $ git clone https://github.com/n3bu1ous/weBuild
 * $ cd weBuild
@@ -43,6 +51,7 @@ If you don't use Homebrew already then run the following
 * $ cd ..
 * $ cd weBuildClient
 * $ npm install
+
 
 
 ### Windows
