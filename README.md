@@ -5,7 +5,7 @@
 * Any time you see a line starting with $ it denotes running the following command in a terminal.
 
 #### Homebrew
-* If you aren't using Homebrew package manager for OSX... well, you really should be unless you enjoy hand editing your bash profile all of the time. If you already use Homebrew then run the following  
+* If you aren't using Homebrew package manager for OSX...well, Homebrew is pretty great actually, if you already use Homebrew then run the following  
 * $ brew update  
 
 * If you don't use Homebrew already then run the following  
@@ -15,9 +15,15 @@
 * Install node.js
 * $ brew install node
 
+* With out Homebrew, follow directions here
+* https://nodejs.org/en/
+
 #### Mongodb
 * Install mongodb
 * $ brew install mongodb
+
+* With out Homebrew, follow directions here
+* https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 
 #### React Native
 * Install react-native specific components
