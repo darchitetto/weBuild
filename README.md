@@ -2,6 +2,7 @@
 ## Prerequisites
 ### Mac OSx
 
+* Any time you see a line starting with $ it denotes running the following command in a terminal.
 * If you aren't using Homebrew package manager for OSX... well, you really should be unless you enjoy hand editing your bash profile all of the time. If you already use Homebrew then run the following
 * $ brew update
 * If you don't use Homebrew already then run the following
