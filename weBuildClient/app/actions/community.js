@@ -3,6 +3,7 @@ import * as types from './types'
 export function addCommunity (community){
     console.log('ACTION addCommunity', community)
     saveCommunity(community);
+	setTimeout(() => fetchCommunities(), 5000);
 
     return {
         type: types.COMMUNITY_ADDED,
