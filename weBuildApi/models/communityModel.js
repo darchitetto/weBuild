@@ -6,7 +6,7 @@ const CommunitySchema   = new Schema(
         township: String,
         county: String,
         superintendent: {type: Schema.Types.ObjectId,
-			            ref: 'contacts'}
+			            ref: 'Contact'}
     },
     {   collection: 'communities'});
 

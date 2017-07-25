@@ -7,8 +7,6 @@ module.exports = {
                 console.log('error:', err)
                 response.send(err);
             }
-            console.log('success');
-            console.log(jobs);
 
             response.json(jobs);
         }).sort({createDate: 'desc'});
@@ -23,7 +21,6 @@ module.exports = {
         job.startDate = request.body.startDate;
         job.jobNumber = request.body.jobNumber;
         job.createDate = new Date();
-        console.log('body', request.body);
 
         job.save(function(err) {
             if (err) {
