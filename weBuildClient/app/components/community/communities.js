@@ -9,8 +9,8 @@ import {
     Text,
     FlatList,
     Button
-}
-    from 'react-native';
+} from 'react-native';
+import Community from '../community/community';
 
 
 class communities extends Component{
@@ -35,7 +35,7 @@ class communities extends Component{
 				<Button title='Add Community'
 						onPress={() => {this.props.navigation.navigate('AddCommunity')}}
 				/>
-                <Text style={styles.community}>Communities</Text>
+                <Text style={styles.title}>Communities</Text>
                 <Text>Community Count is {this.props.communityCount}</Text>
                 <View style={styles.listView}>
                     <FlatList
@@ -49,22 +49,14 @@ class communities extends Component{
 		);
 	};
 
-	renderCommunity(community){
+	renderCommunity(communityItem){
 		return (
-			<View>
-				<Text>
-					Name: {community.name}
-				</Text>
-				<Text>
-					Township: {community.township}
-				</Text>
-				<Text>
-					County: {community.county}
-				</Text>
-				<Text>
-					Superintendent: {community.superintendent}
-				</Text>
-			</View>
+			<Community {...this.props}
+				name={communityItem.name}
+				township={communityItem.township}
+				county={communityItem.county}
+				superintendent={communityItem.superintendent.firstName + communityItem.superintendent.lastName}
+			/>
 		);
 	};
 }
