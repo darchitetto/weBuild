@@ -56,7 +56,7 @@
 * $ npm install
 * $ cd ..
 * $ cd weBuildClient
-* $ npm install
+* $ yarn install
 
 
 
