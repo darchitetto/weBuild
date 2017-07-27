@@ -1,5 +1,6 @@
-import * as types from './types'
-import * as fileStreamTypes from '../lib/fileStreamTypes'
+import * as types from './types';
+import * as fileStreamTypes from '../lib/fileStreamTypes';
+import * as config from '../lib/config';
 
 export function addImage (base64Image, fileName){
 //middleware => return a function rather than object which is the default. By returning a function, the promise will be resolved
@@ -10,7 +11,7 @@ export function addImage (base64Image, fileName){
 }
 
 const saveImage = (base64Image, fileName, dispatch) => {
-	return fetch('http://127.0.0.1:8080/api/fileStream', {
+	return fetch(config.BASE_URL + 'fileStream', {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',

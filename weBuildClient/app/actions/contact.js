@@ -1,4 +1,5 @@
-import * as types from './types'
+import * as types from './types';
+import * as config from '../lib/config';
 
 export function addContact (contact){
     console.log('ACTION addContact', contact)
@@ -10,7 +11,7 @@ export function addContact (contact){
 }
 
 const saveContact = (contact) => {
-	fetch(types.BASE_URL + 'contact', {
+	fetch(config.BASE_URL + 'contact', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -34,7 +35,7 @@ const saveContact = (contact) => {
 
 export function fetchContactByContactType (contactType){
 	return (dispatch, getState) => {
-		fetch(types.BASE_URL + 'contacts/' + contactType)
+		fetch(config.BASE_URL + 'contacts/' + contactType)
 			.then((response) => response.json())
 			.then((responseData) => {
 				console.log(responseData);

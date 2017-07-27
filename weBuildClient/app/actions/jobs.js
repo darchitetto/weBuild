@@ -1,4 +1,5 @@
-import * as types from './types'
+import * as types from './types';
+import * as config from '../lib/config';
 
 export function addJob (job){
     saveJob(job);
@@ -18,7 +19,7 @@ export function setSearchedJobs ({jobs}){
 
 export function fetchJobs (){
     return (dispatch, getState) => {
-        fetch(types.BASE_URL + 'jobs')
+        fetch(config.BASE_URL + 'jobs')
             .then((response) => response.json())
             .then((responseData) => {
                 console.log(responseData);
@@ -30,7 +31,7 @@ export function fetchJobs (){
 }
 
 const saveJob = (job) => {
-    fetch(types.BASE_URL + 'jobs', {
+    fetch(config.BASE_URL + + 'jobs', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

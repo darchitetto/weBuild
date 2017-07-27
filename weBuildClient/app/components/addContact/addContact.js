@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {ActionCreators} from '../../actions/'
+import {ActionCreators} from '../../actions/';
+import * as config from '../../lib/config';
 import {
     Text,
     View,
@@ -10,8 +11,8 @@ import {
     Button,
     Image
 } from 'react-native';
-import styles from './styles'
-import Icon from '../../../node_modules/react-native-vector-icons/MaterialIcons'
+import styles from './styles';
+import Icon from '../../../node_modules/react-native-vector-icons/MaterialIcons';
 import AddContactModal from './addContactModal';
 import * as contactType from './contactTypes';
 import Camera from '../camera/camera';
@@ -233,7 +234,7 @@ class addContact extends React.Component {
 			return(
                 <Image
                     style={styles.logo}
-                    source={{uri: 'http://127.0.0.1:8080/api/fileStream?fileStreamId=' + this.props.imageFileStreamId}}
+                    source={{uri: config.BASE_URL + 'fileStream?fileStreamId=' + this.props.imageFileStreamId}}
                 />
             )
         }

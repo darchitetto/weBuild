@@ -1,4 +1,5 @@
-import * as types from './types'
+import * as types from './types';
+import * as config from '../lib/config';
 
 export function addCommunity (community){
     console.log('ACTION addCommunity', community)
@@ -11,7 +12,7 @@ export function addCommunity (community){
 }
 
 const saveCommunity = (community) => {
-	fetch(types.BASE_URL + 'community', {
+	fetch(config.BASE_URL + 'community', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -32,7 +33,7 @@ const saveCommunity = (community) => {
 
 export function fetchCommunities (){
 	return (dispatch, getState) => {
-		fetch(types.BASE_URL + 'communities')
+		fetch(config.BASE_URL + 'communities')
 			.then((response) => response.json())
 			.then((responseData) => {
 				console.log(responseData);
