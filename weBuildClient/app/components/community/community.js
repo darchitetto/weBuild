@@ -8,17 +8,37 @@ import {
 	View,
 	Text,
 	Button,
+	Modal
 } from 'react-native';
 import styles from './styles'
+import CommunitySettings from '../communitySettings/communitySettings';
 
 class community extends Component{
 	constructor (props){
 		super(props);
+		this.state = {
+			modalVisible: false,
+		}
+	}
+
+	setModalVisible = (visible) => {
+		this.setState({modalVisible: visible});
 	}
 
 	render(){
 		return (
 			<View>
+				<Modal
+					animationType={"fade"}
+					transparent={true}
+					visible={this.state.modalVisible}>
+					<View>
+						<View>
+							<CommunitySettings {...this.props} setModalVisible={this.setModalVisible}/>
+							<Button title='Close'  onPress={() => {this.setModalVisible(false)}}/>
+						</View>
+					</View>
+				</Modal>
 				<View style={styles.row}>
 					<View style={[styles.column, styles.communityIcon]}>
 						<Icon size={40} color="black" name="account-balance" />
@@ -38,7 +58,7 @@ class community extends Component{
 						</View>
 					</View>
 					<View style={[styles.column, styles.settingsButton]}>
-						<Button title=':' onPress={() => this.props.navigation.navigate('communities')}/>
+						<Button title=':' onPress={() => {this.setModalVisible(true)}}/>
 					</View>
 				</View>
 			</View>
