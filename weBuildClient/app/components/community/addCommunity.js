@@ -3,7 +3,7 @@ import  {connect} from 'react-redux'
 import {ActionCreators} from '../../actions';
 import {bindActionCreators} from 'redux'
 import styles from './styles';
-import * as entityTypes from '../addEntity/entityTypes'
+import * as entityTypes from '../addContact/contactTypes'
 import {
 	View,
 	TextInput,

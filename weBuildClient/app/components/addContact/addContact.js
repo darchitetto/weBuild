@@ -5,7 +5,6 @@ import {ActionCreators} from '../../actions/'
 import {
     Text,
     View,
-    ListView,
     Modal,
     TextInput,
     Button,
@@ -13,19 +12,18 @@ import {
 } from 'react-native';
 import styles from './styles'
 import Icon from '../../../node_modules/react-native-vector-icons/MaterialIcons'
-import AddEntityModal from './addEntityModal';
-import * as entityTypes from './entityTypes';
+import AddContactModal from './addContactModal';
+import * as contactType from './contactTypes';
 import Camera from '../camera/camera';
 import * as Progress from 'react-native-progress';
 
-class addEntity extends React.Component {
+class addContact extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             modalVisible: false,
             cameraModalVisible: false,
-            isEntitySelected: false,
-            entityToAdd: '',
+            isContactSelected: false,
             contactType: '',
             firstName: '',
             lastName: '',
@@ -33,7 +31,7 @@ class addEntity extends React.Component {
             email: '',
             companyName: '',
             subContractorId: '',
-			imageFileStreamId: '',
+            imageFileStreamId: null,
         }
     }
 
@@ -50,34 +48,24 @@ class addEntity extends React.Component {
         this.setState ({cameraModalVisible:visible});
     };
 
-	setLogoId = (logoId) => {
-	    console.log('IN SET LOGO ID')
-		this.setState({logoId:logoId});
-		this.setState ({cameraModalVisible:visible});
-	};
-
 	renderProgress = () => {
 		if (this.props.isImageSaveStarted) {
 			return ( <Progress.Circle size={50} indeterminate={true}/>)
 		};
 	};
 
-    setEntitySelectedState = (selectedEntity) =>{
-        this.setState({entityToAdd:selectedEntity});
-        this.setState({isEntitySelected:true});
-	};
-
     setContactTypeState = (contactType) =>{
         this.setState({contactType:contactType});
+		this.setState({isContactSelected:true});
 	};
 
-    saveEntity = () => {
-        this.props.addContact(this.state, this.props.imageFileStreamId);
+    saveContact = () => {
+        this.props.addContact(this.state);
         this.props.navigation.navigate('myProjects');
         this.resetScreen();
     };
 
-	saveEntityWithLogo = () => {
+	saveContactWithLogo = () => {
 		this.setState({ imageFileStreamId: this.props.imageFileStreamId}, () => {
 			this.props.addContact(this.state, this.props.imageFileStreamId);
 		});
@@ -86,42 +74,41 @@ class addEntity extends React.Component {
 	};
 
     resetScreen = () => {
-        this.setState({isEntitySelected:false});
-        this.setState({entityToAdd:''});
+        this.setState({isContactSelected:false});
         this.setState({contactType:''});
     };
 
-    renderEntity = () => {
-        if (!this.state.modalVisible && this.state.isEntitySelected) {
-            switch (this.state.entityToAdd) {
-                case entityTypes.SUPERINTENDENT:
+    renderContact = () => {
+        if (!this.state.modalVisible && this.state.isContactSelected) {
+            switch (this.state.contactType) {
+                case contactType.SUPERINTENDENT:
                     return <View>
-                        <Text style={styles.header}>Add a {this.state.entityToAdd}</Text>
+                        <Text style={styles.header}>Add a {this.state.contactType}</Text>
                         {this.renderCommonFields()}
-                        <Button title='Save' onPress={() => {this.saveEntity()}}/>
+                        <Button title='Save' onPress={() => {this.saveContact()}}/>
                     </View>
                     break;
-                case entityTypes.SUB_CONTRACTOR:
+                case contactType.SUB_CONTRACTOR:
                     return <View>
-                        <Text style={styles.header}>Add a {this.state.entityToAdd}</Text>
+                        <Text style={styles.header}>Add a {this.state.contactType}</Text>
                         {this.renderSubContractorFields()}
-                        <Button title='Save' onPress={() => {this.saveEntity()}}/>
+                        <Button title='Save' onPress={() => {this.saveContact()}}/>
                     </View>
                     break;
-                case entityTypes.BUYER:
+                case contactType.BUYER:
                     return <View>
-                        <Text style={styles.header}>Add a {this.state.entityToAdd}</Text>
+                        <Text style={styles.header}>Add a {this.state.contactType}</Text>
                         {this.renderCommonFields()}
-                        <Button title='Save' onPress={() => {this.saveEntity()}}/>
+                        <Button title='Save' onPress={() => {this.saveContact()}}/>
                     </View>
                     break;
-                case entityTypes.BUSINESS_ENTITY:
+                case contactType.BUSINESS_ENTITY:
                     return <View >
                         {this.renderProgress()}
-                        <Text style={styles.header}>Add a {this.state.entityToAdd}</Text>
+                        <Text style={styles.header}>Add a {this.state.contactType}</Text>
                         {this.renderBusinessEntityFields()}
                         <View>
-                            <Button title='Save' disabled={this.props.isImageSaveStarted} onPress={() => {this.saveEntityWithLogo()}}/>
+                            <Button title='Save' disabled={this.props.isImageSaveStarted} onPress={() => {this.saveContactWithLogo()}}/>
                         </View>
                     </View>
                     break;
@@ -138,16 +125,16 @@ class addEntity extends React.Component {
                     visible={this.state.modalVisible}>
                     <View>
                         <View>
-                            <AddEntityModal {...this.props}
-                                setModalVisible={this.setModalVisible}
-                                setEntitySelectedState={this.setEntitySelectedState}
-                                setContactTypeState={this.setContactTypeState}/>
+                            <AddContactModal {...this.props}
+                                             setModalVisible={this.setModalVisible}
+                                             //setContactSelectedState={this.setContactSelectedState}
+                                             setContactTypeState={this.setContactTypeState}/>
                             <Button title='Close'  onPress={() => {this.setModalVisible(false)}}/>
                         </View>
                     </View>
                 </Modal>
                 <Button style={styles.row} title='Open Modal' onPress={() => {this.setModalVisible(true)}}/>
-                {this.renderEntity()}
+                {this.renderContact()}
             </View>
         )
     }
@@ -257,8 +244,8 @@ function mapDispatchToProps(dispatch){
     return bindActionCreators(ActionCreators, dispatch)
 }
 
-addEntity.defaultProps = {
-    imageFileStreamId: '',
+addContact.defaultProps = {
+    imageFileStreamId: null,
     isImageSaveStarted: false,
 	isImageSavedSuccess: false,
 	isImageSavedError: null};
@@ -273,4 +260,4 @@ function mapStateToProps (state){
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(addEntity);
+export default connect(mapStateToProps, mapDispatchToProps)(addContact);

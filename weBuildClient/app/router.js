@@ -3,17 +3,15 @@ import { NavigationComponent } from 'react-native-material-bottom-navigation'
 import Icon from '../node_modules/react-native-vector-icons/MaterialIcons'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import {
-    AppRegistry,
     Text,
     View
 } from 'react-native';
-import homeScreen from './components/homeScreen/homeScreen';
-import communitities from './components/community/communities';
+import communities from './components/community/communities';
 import schedule from './components/schedule/schedule';
 import styles from './styles';
 import AddJob from './components/addJob/addJob';
 import AddCommunity from './components/community/addCommunity';
-import AddEntity from './components/addEntity/addEntity';
+import AddEntity from './components/addContact/addContact';
 
 class myNotifications extends React.Component {
     static navigationOptions = {
@@ -31,7 +29,7 @@ class myNotifications extends React.Component {
 }
 
 const MainNavigation = TabNavigator({
-	communities: { screen: communitities },
+	communities: { screen: communities },
     myProjects: { screen: schedule },
     add: { screen: AddEntity },
     myNotifications: { screen: myNotifications },
