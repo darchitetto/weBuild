@@ -64,17 +64,20 @@ export default StyleSheet.create({
 	categorySubRow:{
 		fontSize: 12,
 		marginLeft: 5
-
+	},
+	managerSubRow:{
+		marginLeft: 5,
+		fontSize: 10,
+		alignSelf: 'stretch',
 	},
 	lotsSubRow:{
 		marginLeft: 5,
 		marginBottom: 5,
 		fontSize: 10,
 		alignSelf: 'stretch',
-
 	},
 	settingsButton: {
-		flex:.25,
+		flex:.5,
 		borderTopWidth: .5,
 		borderRightWidth: .5,
 		borderColor: 'gray',

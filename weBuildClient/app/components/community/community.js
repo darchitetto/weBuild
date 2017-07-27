@@ -31,7 +31,10 @@ class community extends Component{
 							<Text style={styles.categorySubRow}>Township: {this.props.township}</Text>
 						</View>
 						<View style={styles.row}>
-							<Text style={styles.lotsSubRow}> Management: {this.props.superintendent}</Text>
+							<Text style={styles.managerSubRow}> Management: {this.props.superintendent}</Text>
+						</View>
+						<View style={styles.row}>
+							<Text style={styles.lotsSubRow}> Number of Lots: {this.props.numberOfLots}</Text>
 						</View>
 					</View>
 					<View style={[styles.column, styles.settingsButton]}>

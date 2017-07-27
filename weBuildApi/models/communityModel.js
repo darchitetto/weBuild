@@ -5,6 +5,7 @@ const CommunitySchema   = new Schema(
     {   name: String,
         township: String,
         county: String,
+		numberOfLots: Number,
         superintendent: {type: Schema.Types.ObjectId,
 			            ref: 'Contact'}
     },
