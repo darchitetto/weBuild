@@ -22,6 +22,7 @@ const saveCommunity = (community) => {
             township: community.township,
             county: community.county,
 			superintendent: community.superintendent,
+			numberOfLots: community.numberOfLots,
         })
     }).then((response) => response.json())
         .then((responseData) => {

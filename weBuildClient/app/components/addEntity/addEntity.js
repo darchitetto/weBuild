@@ -69,7 +69,6 @@ class addEntity extends React.Component {
 
     setContactTypeState = (contactType) =>{
         this.setState({contactType:contactType});
-
 	};
 
     saveEntity = () => {
@@ -125,6 +124,7 @@ class addEntity extends React.Component {
                             <Button title='Save' disabled={this.props.isImageSaveStarted} onPress={() => {this.saveEntityWithLogo()}}/>
                         </View>
                     </View>
+                    break;
             }
         }
     }

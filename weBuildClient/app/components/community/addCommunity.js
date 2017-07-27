@@ -3,23 +3,28 @@ import  {connect} from 'react-redux'
 import {ActionCreators} from '../../actions';
 import {bindActionCreators} from 'redux'
 import styles from './styles';
+import * as entityTypes from '../addEntity/entityTypes'
 import {
 	View,
 	TextInput,
 	Text,
-	Button
+	Button,
 } from 'react-native';
+import { Picker, Header, Title } from 'native-base';
 
 class addCommunity extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
 			communityName: '',
-			numberLots: '',
+			numberOfLots: '',
 			township: '',
 			superintendent: '',
 			county: '',
+			selectedItem: undefined,
+
 		}
+		this.props.fetchContactByContactType(entityTypes.SUPERINTENDENT);
 	}
 
 	saveCommunity = () => {
@@ -30,13 +35,29 @@ class addCommunity extends Component{
 
 	resetScreen = () => {
 		this.setState({communityName:''});
-		this.setState({numberLots:''});
+		this.setState({numberOfLots:''});
 		this.setState({township:''});
 		this.setState({superintendent:''});
 		this.setState({county:''});
 	};
 
+	superintendents(){
+		return Object.keys(this.props.contacts).map(key => this.props.contacts[key]);
+	};
+
+	setSuperintendent (value) {
+		console.log('setSuperintendent:value',value)
+
+		this.setState({
+			superintendent : value
+		});
+	}
+
 	render(){
+		let contactItems = this.superintendents().map( (item) => {
+			return <Picker.Item key={item._id} value={item._id} label={item.firstName} />
+		});
+
 		return (
 			<View>
 				<View>
@@ -52,7 +73,7 @@ class addCommunity extends Component{
 					<Text style={styles.text}>Number of Lots</Text>
 					<TextInput
 						style={styles.textInput}
-						onChangeText={(text) => this.setState({numberLots:text})}
+						onChangeText={(text) => this.setState({numberOfLots:text})}
 						placeholder='Number of Lots'
 					/>
 					<Text style={styles.text}>Township</Text>
@@ -62,11 +83,14 @@ class addCommunity extends Component{
 						placeholder='Township'
 					/>
 					<Text style={styles.text}>Superintendent</Text>
-					<TextInput
-						style={styles.textInput}
-						onChangeText={(text) => this.setState({superintendent:text})}
-						placeholder='Superintendent'
-					/>
+					<Picker
+						mode="dropdown"
+						placeholder="Select a Superintendent"
+						iosHeader="Superintendent"
+						selectedValue={this.state.superintendent}
+						onValueChange={this.setSuperintendent.bind(this)} >
+						{contactItems}
+					</Picker>
 					<Text style={styles.text}>County</Text>
 					<TextInput
 						style={styles.textInput}
@@ -80,13 +104,15 @@ class addCommunity extends Component{
 	}
 }
 
+addCommunity.defaultProps = {contact: {}};
+
 function mapDispatchToProps(dispatch){
 	return bindActionCreators(ActionCreators, dispatch)
 }
 
 function mapStateToProps (state){
 	return{
-		addCommunity: state.addCommunity,
+		contacts: state.contact.contacts,
 	}
 }
 

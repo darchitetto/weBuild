@@ -2,16 +2,22 @@ import Contact from '../models/contactModel.js';
 
 module.exports = {
     getContacts : (request, response) =>{
-        Contact.find(function(err, contacts) {
+        //TODO: Is this the best way to route by contactType
+        let where = {};
+
+		if (request.params.contactType){
+		    where = {contactType: request.params.contactType};
+        }
+
+        Contact.find(where).sort({createDate: 'desc'})
+            .exec(function(err, contacts) {
             if (err) {
                 console.log('error:', err)
                 response.send(err);
             }
-            console.log('success');
-            console.log(contacts);
-
+            console.log(contacts)
             response.json(contacts);
-        }).sort({createDate: 'desc'});
+        });
     },
     saveContact : (request, response) => {
         let contact = new Contact();
@@ -36,7 +42,7 @@ module.exports = {
             response.json({ message: 'Contact created!' });
         });
     },
-    getContact : (req, res) => {
-        //do something
+    getContact : (request, response) => {
+
     }
 }

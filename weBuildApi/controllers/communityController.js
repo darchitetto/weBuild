@@ -24,6 +24,7 @@ module.exports = {
 		community.name = request.body.name;
 		community.township = request.body.township;
 		community.county = request.body.county;
+		community.numberOfLots = request.body.numberOfLots;
 		community.superintendent = '596e9753d9ebde9b04f4b3ce'//request.body.superintendent;
 
         community.save(function(err) {

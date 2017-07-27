@@ -55,6 +55,7 @@ class communities extends Component{
 				name={communityItem.name}
 				township={communityItem.township}
 				county={communityItem.county}
+				numberOfLots={communityItem.numberOfLots}
 				superintendent={communityItem.superintendent.firstName + communityItem.superintendent.lastName}
 			/>
 		);

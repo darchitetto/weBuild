@@ -16,6 +16,8 @@ router.route('/jobs').post(jobController.saveJobs);
 router.route('/job').get(jobController.getJob);
 
 router.route('/contacts').get(contactController.getContacts);
+router.route('/contacts/:contactType').get(contactController.getContacts);
+
 router.route('/contact').post(contactController.saveContact);
 router.route('/contact').get(contactController.getContact);
 
