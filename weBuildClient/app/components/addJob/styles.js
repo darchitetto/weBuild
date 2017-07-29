@@ -7,5 +7,13 @@ export default StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         width: 200
-    }
+    },
+	text: {
+		color: '#2222DC',
+		fontSize: 15
+	},
+	textInput:{
+		height: 40,
+		borderColor: 'gray',
+	},
 });

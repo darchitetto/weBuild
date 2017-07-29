@@ -2,22 +2,17 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {ActionCreators} from '../../actions/'
-import Schedule from '../schedule/schedule'
-import {
-    AppRegistry,
-    View,
-    Text,
-} from 'react-native';
 import styles from './styles'
-import {Container,
-        Content,
-        Form,
-        Item,
-        Input,
-        Label,
-        Picker,
-        Button,
-        Icon} from 'native-base';
+import {
+	View,
+	TextInput,
+	Text,
+	Button,
+} from 'react-native';
+import {
+	Picker,
+}
+from 'native-base';
 
 class addJob extends React.Component {
     constructor(props) {
@@ -26,23 +21,24 @@ class addJob extends React.Component {
             selectedItem: undefined,
             name: '',
             contractor: '',
-            duration: '',
-            category: 'outside',
-            startDate: '',
-            jobNumber: '',
+            duration: 0,
+            category: '',
+            startDate: new Date(),
+            jobNumber: 0,
         }
     };
 
-    //TODO: How to make the < button work
-    // static navigationOptions = {
-    //     title: 'Add a Job',
-    // };
+	setCategory (value) {
+		this.setState({
+			category : value
+		});
+	}
 
-    onValueChange (value) {
-        this.setState({
-            category : value
-        });
-    };
+	setDuration (value) {
+		this.setState({
+			duration : value
+		});
+	}
 
     saveJob = () => {
         this.props.addJob(this.state);
@@ -50,49 +46,64 @@ class addJob extends React.Component {
     };
 
     render() {
-        return (
-            <Container>
-                <Content>
-                    <Form>
-                        <Button
-                            onPress={() => this.props.navigation.navigate('myProjects')}
-                            title="Go back from this HomeScreen">
-                            <Text>Back</Text>
-                        </Button>
-                        <Item stackedLabel>
-                            <Label >Name</Label>
-                            <Input onChangeText={(text) => this.setState({name:text})} />
-                        </Item>
-                        <Item stackedLabel>
-                            <Label>Contractor</Label>
-                            <Input onChangeText={(text) => this.setState({contractor:text})} />
-                        </Item>
+		const duration = [1,2,3,4,5,6,7,8,9,10];
 
-                        <Item stackedLabel>
-                            <Label>Duration</Label>
-                            <Input onChangeText={(text) => this.setState({duration:text})} />
-                        </Item>
-                        <Item stackedLabel>
-                            <Label>Category</Label>
-                            <Input onChangeText={(text) => this.setState({category:text})} />
-                        </Item>
-                        <Item stackedLabel>
-                            <Label>Start Date</Label>
-                            <Input onChangeText={(text) => this.setState({startDate:text})} />
-                        </Item>
-                        <Item stackedLabel>
-                            <Label>Job Number</Label>
-                            <Input onChangeText={(text) => this.setState({jobNumber:text})} />
-                        </Item>
-                        <View style={styles.button}>
-                            <Button iconLeft primary block onPress={this.saveJob}>
-                                <Icon name='rainy' />
-                                <Text>Save Job</Text>
-                            </Button>
-                        </View>
-                    </Form>
-                </Content>
-            </Container>
+		let durationItems = duration.map( (item) => {
+			return <Picker.Item key={item} value={item} label={item} />
+		});
+        return (
+            <View>
+                <View>
+                    <Button
+                        onPress={() => this.props.navigation.navigate('myProjects')}
+                        title="Back"/>
+                    <Text style={styles.text}>Job Name</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        onChangeText={(text) => this.setState({name:text})}
+                        placeholder='Name'
+                    />
+                    <Text style={styles.text}>Contractor</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        onChangeText={(text) => this.setState({contractor:text})}
+                        placeholder='Contractor'
+                    />
+                    <Text style={styles.text}>Duration</Text>
+                    <Picker
+                        mode="dropdown"
+                        placeholder="Select a Duration"
+                        iosHeader="Duration"
+                        selectedValue={this.state.duration}
+                        onValueChange={this.setDuration.bind(this)} >
+						{durationItems}
+                    </Picker>
+                    <Text style={styles.text}>Category</Text>
+                    <Picker
+                        mode="dropdown"
+                        placeholder="Select a Category"
+                        iosHeader="Category"
+                        selectedValue={this.state.category}
+                        onValueChange={this.setCategory.bind(this)} >
+                        <Picker.Item label = "Outside" value = "Outside" />
+                        <Picker.Item label = "Inside" value = "Inside" />
+                        <Picker.Item label = "Landscape" value = "Landscape" />
+                    </Picker>
+                    <Text style={styles.text}>Start Date</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        onChangeText={(text) => this.setState({startDate:text})}
+                        placeholder='Start Date'
+                    />
+                    <Text style={styles.text}>Job Number</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        onChangeText={(text) => this.setState({jobNumber:text})}
+                        placeholder='Job Number'
+                    />
+                    <Button title='Save' onPress={() => {this.saveJob()}}/>
+                </View>
+            </View>
         );
     }
 }
