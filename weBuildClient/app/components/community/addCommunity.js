@@ -46,8 +46,6 @@ class addCommunity extends Component{
 	};
 
 	setSuperintendent (value) {
-		console.log('setSuperintendent:value',value)
-
 		this.setState({
 			superintendent : value
 		});
