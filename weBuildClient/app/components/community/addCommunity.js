@@ -22,7 +22,6 @@ class addCommunity extends Component{
 			superintendent: '',
 			county: '',
 			selectedItem: undefined,
-
 		}
 		this.props.fetchContactByContactType(entityTypes.SUPERINTENDENT);
 	}
