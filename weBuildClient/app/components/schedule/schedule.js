@@ -5,7 +5,8 @@ import {ActionCreators} from '../../actions';
 import {
     Text,
     View,
-    FlatList
+    FlatList,
+    Button,
 } from 'react-native';
 import styles from './styles'
 import Job from '../job/job'
@@ -31,6 +32,9 @@ class schedule extends Component {
 
         return(
             <View style={styles.tab}>
+                <Button title='Add Job'
+                        onPress={() => {this.props.navigation.navigate('AddJob')}}
+                />
                 <Text style={styles.community}>Schedule - Community 1 </Text>
                 <Text>job Count is {this.props.jobCount}</Text>
                 <View style={styles.listView}>

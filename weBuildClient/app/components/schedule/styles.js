@@ -10,12 +10,11 @@ export default StyleSheet.create({
         textAlign: 'center',
         backgroundColor: '#F6F6F9',
     },
-    tab: {
-        top: 56,
-        elevation: 8,
-        zIndex: 5,
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#DFE2E8',
-    }
+	tab: {
+		top: 0,
+		elevation: 0,
+		backgroundColor: '#F6F6F9',
+		width: '100%',
+		height: '100%',
+	},
 });
