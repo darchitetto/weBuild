@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {ActionCreators} from '../../actions/'
-import styles from './styles'
+import {ActionCreators} from '../../actions/';
+import styles from './styles';
+import * as contactTypes from '../addContact/contactTypes'
 import {
 	View,
 	TextInput,
@@ -25,20 +26,31 @@ class addJob extends React.Component {
             category: '',
             startDate: new Date(),
             jobNumber: 0,
-        }
-    };
+        };
+		this.props.fetchContactByContactType(contactTypes.SUB_CONTRACTOR);
+	};
 
 	setCategory (value) {
 		this.setState({
 			category : value
 		});
-	}
+	};
 
 	setDuration (value) {
 		this.setState({
 			duration : value
 		});
-	}
+	};
+
+	setContractor (value) {
+		this.setState({
+			contractor : value
+		});
+	};
+
+	contractors(){
+		return Object.keys(this.props.contacts).map(key => this.props.contacts[key]);
+	};
 
     saveJob = () => {
         this.props.addJob(this.state);
@@ -51,6 +63,11 @@ class addJob extends React.Component {
 		let durationItems = duration.map( (item) => {
 			return <Picker.Item key={item} value={item} label={item} />
 		});
+
+		let contactItems = this.contractors().map( (item) => {
+			return <Picker.Item key={item._id} value={item._id} label={item.firstName} />
+		});
+
         return (
             <View>
                 <View>
@@ -64,11 +81,14 @@ class addJob extends React.Component {
                         placeholder='Name'
                     />
                     <Text style={styles.text}>Contractor</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        onChangeText={(text) => this.setState({contractor:text})}
-                        placeholder='Contractor'
-                    />
+                    <Picker
+                        mode="dropdown"
+                        placeholder="Select a Contractor"
+                        iosHeader="Contractor"
+                        selectedValue={this.state.contractor}
+                        onValueChange={this.setContractor.bind(this)} >
+						{contactItems}
+                    </Picker>
                     <Text style={styles.text}>Duration</Text>
                     <Picker
                         mode="dropdown"
@@ -115,6 +135,7 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps (state){
     return{
         addJob: state.addJob,
+		contacts: state.contact.contacts,
     }
 }
 
