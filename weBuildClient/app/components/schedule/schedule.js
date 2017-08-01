@@ -54,7 +54,7 @@ class schedule extends Component {
             <Job {...this.props}
                 name={jobItem.name}
                 category={jobItem.category}
-                contractor={jobItem.contractor}
+                contractor={jobItem.contractor.firstName + ' ' + jobItem.contractor.lastName}
                 duration={jobItem.duration}
                 durationType={jobItem.durationType}
                 startDate={jobItem.startDate}

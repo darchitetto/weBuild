@@ -22,7 +22,7 @@ export default class subJob extends Component{
                                 <Text style={styles.topSubRow}>{this.props.data.category}</Text>
                             </View>
                             <View style={styles.row}>
-                                <Text style={styles.middleSubRow}>Contractor: {this.props.data.contractor}</Text>
+                                <Text style={styles.middleSubRow}>Contractor: {this.props.data.contractor.firstName + ' ' + this.props.data.contractor.lastName}</Text>
                             </View>
                             <View style={styles.row}>
                                 <Text style={styles.bottomSubRow} >Start Date: {this.props.data.startDate}</Text>
