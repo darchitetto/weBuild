@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 let Schema       = mongoose.Schema;
 const JobSchema   = new Schema(
     {   name: String,
-        contractor: String,
+		contractor: {type: Schema.Types.ObjectId,
+			ref: 'Contact'},
         duration: Number,
         category: String,
         startDate: Date,

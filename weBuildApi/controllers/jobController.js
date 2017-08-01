@@ -2,14 +2,15 @@ import Job from '../models/jobModel.js';
 
 module.exports = {
     getJobs : (request, response) =>{
-        Job.find(function(err, jobs) {
+        Job.find().populate({ path: 'contractor'})
+            .exec(function(err, jobs) {
             if (err) {
                 console.log('error:', err)
                 response.send(err);
             }
 
             response.json(jobs);
-        }).sort({createDate: 'desc'});
+        });
     },
     saveJobs : (request, response) => {
         let job = new Job();
