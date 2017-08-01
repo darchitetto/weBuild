@@ -32,6 +32,7 @@ const saveCommunity = (community) => {
 };
 
 export function fetchCommunities (){
+	console.log('FETCH COMMUNITIES')
 	return (dispatch, getState) => {
 		fetch(config.BASE_URL + 'communities')
 			.then((response) => response.json())

@@ -4,12 +4,8 @@ import contacts from '../models/contactModel.js';
 
 module.exports = {
     getCommunities : (request, response) =>{
-
-
 		Community.find().populate({ path: 'superintendent'})
-
 			.exec(function(err, communities)
-
 			{
 				if (err) {
 					console.log('error:', err)
