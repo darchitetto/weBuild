@@ -8,21 +8,39 @@ import {
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { TabNavigator } from "react-navigation";
+import Icon from './node_modules/react-native-vector-icons/MaterialIcons'
 
 
 var Sith_Lord = "Darth Vador";
 var MainScreenTitle = "My Chats";
 
-class RecentChatsScreen extends React.Component {
-  render() {
-    return <View style = {styles.backgrounds}>
-            <Text>List of recent chats</Text>
-            <Button color = '#283018'
-              onPress={() => this.props.navigation.navigate('Chat', { user: Sith_Lord })}
-              title="Chat with Darth Vador"
-              />
-          </View>
-  }
+// class RecentChatsScreen extends React.Component {
+//   render() {
+//     return <View style = {styles.backgrounds}>
+//             <Text>List of recent chats</Text>
+//             <Button color = '#283018'
+//               onPress={() => this.props.navigation.navigate('Chat', { user: Sith_Lord })}
+//               title="Chat with Darth Vador"
+//               />
+//           </View>
+//   }
+// }
+
+class MyNotificationsScreen extends React.Component {
+    static navigationOptions = {
+        tabBarLabel: 'My Notifications',
+        tabBarIcon: () => (<Icon size={24} color="white" name="vibration"/>)
+    }
+
+    render() {
+        return <View style = {styles.backgrounds}>
+                <Text>List of recent chats</Text>
+                <Button color = '#283018'
+                  onPress={() => this.props.navigation.navigate('Chat', { user: Sith_Lord })}
+                  title="Chat with Darth Vador"
+                  />
+              </View>
+    }
 }
 
 class AllContactsScreen extends React.Component {
@@ -46,7 +64,7 @@ class ContactsTabScreen extends React.Component {
 }
 
 const MainScreenNavigator = TabNavigator({
-    Recent: { screen: RecentChatsScreen },
+    Recent: { screen: MyNotificationsScreen },
     All: { screen: AllContactsScreen },
     Contacts: { screen: ContactsTabScreen},
   },
