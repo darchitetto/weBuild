@@ -54,8 +54,13 @@ class addJob extends React.Component {
 
     saveJob = () => {
         this.props.addJob(this.state);
-        this.props.navigation.navigate('myProjects');
     };
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.isJobSavedSuccess) {
+			this.props.navigation.navigate('myProjects');
+		}
+	}
 
     render() {
 		const duration = [1,2,3,4,5,6,7,8,9,10];
@@ -136,6 +141,9 @@ function mapStateToProps (state){
     return{
         addJob: state.addJob,
 		contacts: state.contact.contacts,
+		isJobSaveStarted: state.job.isJobSaveStarted,
+		isJobSavedSuccess: state.job.isJobSavedSuccess,
+		isJobSavedError: state.job.isJobSavedError,
     }
 }
 

@@ -2,12 +2,12 @@ import * as types from './types';
 import * as config from '../lib/config';
 
 export function addJob (job){
-    saveJob(job);
-    setTimeout(() => fetchJobs(), 5000);
 
-    return {
-        type: types.JOB_ADDED,
-    }
+	return (dispatch, getState) => {
+		saveJob(job, dispatch);
+		setTimeout(() => fetchJobs(), 5000);
+
+	}
 }
 
 export function setSearchedJobs ({jobs}){
@@ -18,6 +18,7 @@ export function setSearchedJobs ({jobs}){
 }
 
 export function fetchJobs (){
+    console.log('FETCH JOBS')
     return (dispatch, getState) => {
         fetch(config.BASE_URL + 'jobs')
             .then((response) => response.json())
@@ -28,10 +29,11 @@ export function fetchJobs (){
             })
             .done();
     }
-}
+};
 
-const saveJob = (job) => {
-    fetch(config.BASE_URL + + 'jobs', {
+const saveJob = (job, dispatch) => {
+    console.log('ACTION: save JOB', job)
+    fetch(config.BASE_URL + 'jobs', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -46,6 +48,22 @@ const saveJob = (job) => {
             jobNumber: job.jobNumber,
         })
     }).then((responseData) => {
-      console.log('saveJobResponse', responseData)
-    });
+        console.log('saveJobResponse', responseData)
+		dispatch (jobSaveSuccess(responseData))
+    })
+    .catch((error) => {
+        console.log('Job Error: ', error)
+        dispatch(jobSaveError(error))
+    })
+};
+
+export function jobSaveSuccess(responseData) {
+	return dispatch => {
+		dispatch({
+			type: types.JOB_SAVED_SUCCESSS });
+	};
+};
+
+export function jobSaveError(err) {
+	return { err, type: types.JOB_SAVED_FAILURE };
 };
