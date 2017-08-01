@@ -20,9 +20,9 @@ export default function imageFileStreamId(state = {}, action) {
 		case types.IMAGE_SAVED_FAILURE:
 			return {
 				...state,
+				isImageSaveStarted: false,
+				isImageSavedSuccess: false,
 				isImageSavedError: action.err,
-				isLoggingIn: false,
-				isLoggedIn: false
 			};
 			break;
 		default:
